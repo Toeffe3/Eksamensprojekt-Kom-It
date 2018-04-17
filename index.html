@@ -16,6 +16,12 @@
     <div class="frame">
       <!-- Pulsating -->
       <script type="text/javascript">
+        var scroll = 0;
+        var page = 10;
+
+        var tranInterval;
+        var tranWidth = 0;
+
         var bColor = 50
         var fColor = 205
         var dir = true
@@ -26,15 +32,47 @@
         }
 
         function draw() {
-          background(bColor)
+          if(scroll<=page) {
+            startpage()
+          } else if(scroll<=page*2) {
+            trans("LEFT")
+            page2()
+          }
+        }
 
+        function trans(type) {
+          if(tranWidth==0) {
+            var last = type
+            tranInterval = setInterval(function(){
+              console.log(tranWidth)
+              if (tranWidth>innerWidth) {
+                clearInterval(tranInterval)
+                clearInterval(expTran)
+                return false
+              }
+
+              expTran = setInterval(function(){
+                tranWidth++
+                fill(0)
+                stroke(0)
+                line(tranWidth,0,tranWidth,innerHeight)
+              },10)
+
+            },100)
+          }
+        }
+
+        function startpage() {
+          background(bColor)
           noStroke()
           fill(fColor)
           ellipse(width/2,height/2,50,50)
           textSize(40)
           textAlign(CENTER)
           text(title, width/2,height/2-100)
-          if(dir){
+          textSize(20)
+          text("[scroll to continue]", width/2,height-100)
+          if(dir) {
             bColor++
             fColor--
           } else if (!dir) {
@@ -52,10 +90,20 @@
             }
           }
         }
+
+        function page2() {
+
+        }
+
+        function mouseWheel(event) {
+          scroll += event.delta;
+          console.log(scroll);
+          return false;
+        }
       </script>
     </div>
     <div class="page">
-      
+
     </div>
   </body>
 </html>
