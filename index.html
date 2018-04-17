@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="dk" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Eksamensprojekt</title>
+    <!-- Libraries -->
+    <script src="Libraries/p5.js" charset="utf-8"></script>
+    <!-- <script src="Libraries/p5.min.js" charset="utf-8"></script> -->
+    <!-- Scripts -->
+
+    <!-- Other -->
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <div class="frame">
+      <!-- Pulsating -->
+      <script type="text/javascript">
+        var bColor = 50
+        var fColor = 205
+        var dir = true
+        var title = "MATTER"
+        function setup() {
+          createCanvas(innerWidth,innerHeight)
+          frameRate(20)
+        }
+
+        function draw() {
+          background(bColor)
+
+          noStroke()
+          fill(fColor)
+          ellipse(width/2,height/2,50,50)
+          textSize(40)
+          textAlign(CENTER)
+          text(title, width/2,height/2-100)
+          if(dir){
+            bColor++
+            fColor--
+          } else if (!dir) {
+            bColor--
+            fColor++
+          }
+          if(bColor >= 205 || bColor <= 50) {
+            dir = !dir
+          }
+          if(bColor == fColor+1) {
+            if(title == "ANTI-MATTER") {
+              title = "MATTER"
+            } else {
+              title = "ANTI-MATTER"
+            }
+          }
+        }
+      </script>
+    </div>
+    <div class="page">
+      
+    </div>
+  </body>
+</html>
