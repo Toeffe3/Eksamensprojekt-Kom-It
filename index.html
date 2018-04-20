@@ -5,6 +5,8 @@
     <title>Eksamensprojekt</title>
     <!-- Libraries -->
     <script src="Libraries/p5.js" charset="utf-8"></script>
+    <script src="HID.js" charset="utf-8"></script>
+    <script src="transition.js" charset="utf-8"></script>
     <!-- <script src="Libraries/p5.min.js" charset="utf-8"></script> -->
     <!-- Scripts -->
 
@@ -16,53 +18,37 @@
     <div class="frame">
       <!-- Pulsating -->
       <script type="text/javascript">
-        var scroll = 0;
-        var page = 10;
+        var page = 0
+        var maxWidth;
 
-        var tranInterval;
-        var tranWidth = 0;
-
+        //page0
         var bColor = 50
         var fColor = 205
         var dir = true
         var title = "MATTER"
+
         function setup() {
           createCanvas(innerWidth,innerHeight)
+          maxWidth = innerWidth
           frameRate(20)
         }
 
-        function draw() {
-          if(scroll<=page) {
-            startpage()
-          } else if(scroll<=page*2) {
-            trans("LEFT")
+        function draw(){
+          if(page == 0) {
+            page0()
+          } else if(page==2) {
+            page1()
+          } else if(page==4){
             page2()
           }
         }
 
-        function trans(type) {
-          if(tranWidth==0) {
-            var last = type
-            tranInterval = setInterval(function(){
-              console.log(tranWidth)
-              if (tranWidth>innerWidth) {
-                clearInterval(tranInterval)
-                clearInterval(expTran)
-                return false
-              }
-
-              expTran = setInterval(function(){
-                tranWidth++
-                fill(0)
-                stroke(0)
-                line(tranWidth,0,tranWidth,innerHeight)
-              },10)
-
-            },100)
-          }
+        function page1() {
+          fill(55)
+          text("Higgs", 100, 100)
         }
 
-        function startpage() {
+        function page0() {
           background(bColor)
           noStroke()
           fill(fColor)
@@ -71,7 +57,7 @@
           textAlign(CENTER)
           text(title, width/2,height/2-100)
           textSize(20)
-          text("[scroll to continue]", width/2,height-100)
+          text("[Use arrowkeys or spacebar]", width/2,height-50)
           if(dir) {
             bColor++
             fColor--
@@ -89,16 +75,6 @@
               title = "ANTI-MATTER"
             }
           }
-        }
-
-        function page2() {
-
-        }
-
-        function mouseWheel(event) {
-          scroll += event.delta;
-          console.log(scroll);
-          return false;
         }
       </script>
     </div>

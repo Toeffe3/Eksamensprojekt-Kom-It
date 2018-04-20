@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  height: 300vh;
+  height: 200vh;
 }
 
 canvas, .frame {
@@ -14,7 +14,7 @@ canvas, .frame {
 
 .page {
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 20px);
   width: 100vw;
   top: 100vh;
 
