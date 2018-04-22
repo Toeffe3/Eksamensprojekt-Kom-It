@@ -34,6 +34,7 @@
         }
 
         function draw(){
+          console.log("page: "+page);
           if(page == 0) {
             page0()
           } else if(page==2) {
@@ -41,11 +42,6 @@
           } else if(page==4){
             page2()
           }
-        }
-
-        function page1() {
-          fill(55)
-          text("Higgs", 100, 100)
         }
 
         function page0() {
@@ -76,6 +72,16 @@
             }
           }
         }
+
+        function page1() {
+          fill(55)
+          text("Higgs", 100, 100)
+        }
+
+        function page2() {}
+        function page3() {}
+        function page4() {}
+        function page5() {}
       </script>
     </div>
     <div class="page">

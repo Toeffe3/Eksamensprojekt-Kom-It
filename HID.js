@@ -9,6 +9,17 @@ function keyPressed() {
   } else if(keyCode == RIGHT_ARROW) {
     page++
     trans("RIGHT", false, 0)
+  } else if(keyCode == 32) {  //Space
+
+  } else if(keyCode == 9) {   //tab
+
+  } else if(keyCode == 112) { //F1
+
+  } else if(keyCode == 123) { //F12
+
+  } else if(keyCode == 36) {  //Home
+    page=1
+    trans("LEFT", true, 0)
   } else {
     return false
   }
