@@ -5,6 +5,7 @@
     <title>Eksamensprojekt</title>
     <!-- Libraries -->
     <script src="Libraries/p5.js" charset="utf-8"></script>
+    <script src="Libraries/p5.dom.js" charset="utf-8"></script>
     <script src="HID.js" charset="utf-8"></script>
     <script src="transition.js" charset="utf-8"></script>
     <!-- <script src="Libraries/p5.min.js" charset="utf-8"></script> -->
@@ -19,8 +20,8 @@
       <!-- Pulsating -->
       <script type="text/javascript">
         var page = 0
-        var maxWidth;
-
+        var maxWidth
+        var info = false
         //page0
         var bColor = 50
         var fColor = 205
@@ -34,7 +35,10 @@
         }
 
         function draw(){
-          console.log("page: "+page);
+          //console.log("page: "+page);
+          if(info) {
+            scroll = 100
+          }
           if(page == 0) {
             page0()
           } else if(page==2) {
@@ -45,6 +49,10 @@
         }
 
         function page0() {
+
+          createElement('H1', data.zero.header)
+          createElement('P', data.zero.content)
+
           background(bColor)
           noStroke()
           fill(fColor)
@@ -82,10 +90,11 @@
         function page3() {}
         function page4() {}
         function page5() {}
-      </script>
-    </div>
-    <div class="page">
 
+        function windowResized() {
+          resizeCanvas(windowWidth, windowHeight);
+        }
+      </script>
     </div>
   </body>
 </html>

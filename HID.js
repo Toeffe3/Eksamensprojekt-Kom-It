@@ -10,7 +10,7 @@ function keyPressed() {
     page++
     trans("RIGHT", false, 0)
   } else if(keyCode == 32) {  //Space
-
+    info = !info
   } else if(keyCode == 9) {   //tab
 
   } else if(keyCode == 112) { //F1
@@ -26,5 +26,6 @@ function keyPressed() {
 }
 
 function mouseWheel(event) {
+  scroll += event.delta
   return false
 }
