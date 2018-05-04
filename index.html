@@ -28,6 +28,10 @@
         var dir = true
         var title = "MATTER"
 
+        var eT = 0;
+
+        var atomSize = 1;
+
         function setup() {
           createCanvas(innerWidth,innerHeight)
           maxWidth = innerWidth
@@ -48,10 +52,10 @@
           }
         }
 
-        function page0() {
+        function page1() {
 
-          createElement('H1', data.zero.header)
-          createElement('P', data.zero.content)
+          //createElement('H1', data.zero.header)
+          //createElement('P', data.zero.content)
 
           background(bColor)
           noStroke()
@@ -81,9 +85,23 @@
           }
         }
 
-        function page1() {
-          fill(55)
-          text("Higgs", 100, 100)
+        function page0() {
+
+          if(mouseIsPressed){
+            atomSize++
+          }
+
+          var eX = cos(eT)*150
+          var eY = sin(eT)*150
+          eT+=0.02
+
+          background(205)
+          fill(205)
+          ellipse(width/2,height/2,300+atomSize,300+atomSize)
+          fill(50)
+          ellipse(width/2,height/2,50+atomSize,50+atomSize)
+          ellipse(width/2+eX-atomSize,height/2+eY-atomSize,20+atomSize/10,20+atomSize/10)
+          //text("Higgs", 100, 100)
         }
 
         function page2() {}
