@@ -25,6 +25,19 @@
         var dark = 50         //Default dark color
         var bright = 205      //Default bright color
 
+        var area = {
+          "H": 0,             //Browser height
+          "W": 0,             //Browser width
+          "h": 0,             //Animation-area height
+          "w": 0,             //Animation-area width
+          "C": {              //Center values for those;
+            "H": 0,
+            "W": 0,
+            "h": 0,
+            "w": 0,
+          }
+        }
+
         /* MATTER - ANTIMATTER */
         var bColor = dark     //Background color
         var fColor = bright   //Foreground color
@@ -39,6 +52,15 @@
         function setup() {
           createCanvas(innerWidth,innerHeight)  //Create a HTML5 Canvas for the p5.js enviorment
           frameRate(20)                         //Set the frameRate
+
+          area.H = windowHeight
+          area.W = windowWidth
+          area.h = windowHeight-20
+          area.w = windowWidth-350
+          area.C.H = windowHeight/2
+          area.C.W = windowWidth/2
+          area.C.h = (windowHeight-20)/2
+          area.C.w = (windowWidth-350)/2
         }
 
         /* CODE TO BE EXECUTEDE REPEATLY */
@@ -49,6 +71,13 @@
             console.log(frame)    //For Debugging purposes only
           }
           frameSet()              //Call frameSet (Check for anything new shall happen in the current frame)
+
+          fill(255)
+          noStroke()
+          rect(area.w,0,area.W,area.h)
+          fill(0)
+          rect(0,area.h,area.W,area.H)
+
         }
 
         /* Checks if anything new shall be exectued in the current frame */
@@ -80,30 +109,30 @@
 
           background(bright)
           fill(bright)
-          ellipse(width/2,height/2,300+atomSize*2)
+          ellipse(area.C.w,area.C.h,300+atomSize*2)
           fill(dark)
-          ellipse(width/2,height/2,50+atomSize)
-          ellipse(width/2+eX,height/2+eY,20+atomSize/10)
+          ellipse(area.C.w,area.C.h,50+atomSize)
+          ellipse(area.C.w+eX,area.C.h+eY,20+atomSize/10)
 
           if (x) {                //If x is true do:
             fill(bright)          //Set fill-color
             textSize(24)          //Set font/text size
-            text("e-",width/2+eX,height/2+eY+7) //Create a text at the electron's position
+            text("e-",area.C.w+eX,area.C.h+eY+7) //Create a text at the electron's position
           }
         }
 
         function quark() {
 
           fill(bright)
-          ellipse(width/2,height/2+90,100)
-          ellipse(width/2-75,height/2-65,100)
-          ellipse(width/2+75,height/2-65,100)
+          ellipse(area.C.w,area.C.h+90,100)
+          ellipse(area.C.w-75,area.C.h-65,100)
+          ellipse(area.C.w+75,area.C.h-65,100)
 
           textAlign(CENTER)
           fill(dark)
-          text("DOWN",width/2,height/2+90+10)
-          text("UP",width/2-75,height/2-65+5)
-          text("UP",width/2+75,height/2-65+5)
+          text("DOWN",area.C.w,area.C.h+90+10)
+          text("UP",area.C.w-75,area.C.h-65+5)
+          text("UP",area.C.w+75,area.C.h-65+5)
         }
 
         function page1() {
@@ -114,12 +143,12 @@
           background(bColor)
           noStroke()
           fill(fColor)
-          ellipse(width/2,height/2,50,50)
+          ellipse(area.C.w,area.C.h,50,50)
           textSize(40)
           textAlign(CENTER)
-          text(title, width/2,height/2-100)
+          text(title, area.C.w,area.C.h-100)
           textSize(20)
-          text("[Hold højre eller venstre museknap nede]", width/2,height-50)
+          text("[Hold højre eller venstre museknap nede]", area.C.w,area.h-50)
           if(dir) {
             bColor++
             fColor--
