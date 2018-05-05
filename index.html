@@ -19,10 +19,16 @@
     <div class="frame">
       <!-- Pulsating -->
       <script type="text/javascript">
+
+        var frame = 0
+
         var page = 0
         var maxWidth
         var info = false
-        //page0
+
+        var dark = 50
+        var bright = 205
+
         var bColor = 50
         var fColor = 205
         var dir = true
@@ -38,18 +44,25 @@
           frameRate(20)
         }
 
-        function draw(){
-          //console.log("page: "+page);
-          if(info) {
-            scroll = 100
+        function draw() {
+          if (mouseIsPressed) {
+            frame++
+            console.log(frame)
           }
-          if(page == 0) {
-            page0()
-          } else if(page==2) {
-            page1()
-          } else if(page==4){
-            page2()
-          }
+
+          frameSet()
+
+          //console.log("page: "+page)
+          // if(info) {
+          //   scroll = 100
+          // }
+          // if(page == 0) {
+          //   page0()
+          // } else if(page==2) {
+          //   page1()
+          // } else if(page==4){
+          //   page2()
+          // }
         }
 
         function page1() {
@@ -73,7 +86,7 @@
             bColor--
             fColor++
           }
-          if(bColor >= 205 || bColor <= 50) {
+          if(bColor >= bright || bColor <= dark) {
             dir = !dir
           }
           if(bColor == fColor+1) {
@@ -85,30 +98,59 @@
           }
         }
 
-        function page0() {
-
-          if(mouseIsPressed){
-            atomSize++
+        function frameSet() {
+          if (betw(0, 200)) {
+            atom()
           }
 
-          var eX = cos(eT)*150
-          var eY = sin(eT)*150
-          eT+=0.02
+          if (betw(200, 400)) {
+            atom(true)
+            quark()
+          } else if (mouseIsPressed) {
+            atomSize+=2
+          }
 
-          background(205)
-          fill(205)
-          ellipse(width/2,height/2,300+atomSize,300+atomSize)
-          fill(50)
-          ellipse(width/2,height/2,50+atomSize,50+atomSize)
-          ellipse(width/2+eX-atomSize,height/2+eY-atomSize,20+atomSize/10,20+atomSize/10)
-          //text("Higgs", 100, 100)
+
         }
 
-        function page2() {}
-        function page3() {}
-        function page4() {}
-        function page5() {}
+        function atom(x) {
 
+          var eX = cos(eT)*(150+atomSize)
+          var eY = sin(eT)*(150+atomSize)
+          eT+=0.02
+
+          background(bright)
+          fill(bright)
+          ellipse(width/2,height/2,300+atomSize*2)
+          fill(dark)
+          ellipse(width/2,height/2,50+atomSize)
+          ellipse(width/2+eX,height/2+eY,20+atomSize/10)
+          if (x) {
+            fill(bright)
+            textSize(24)
+            text("e-",width/2+eX,height/2+eY+7)
+          }
+        }
+
+        function quark() {
+
+          fill(bright)
+          ellipse(width/2,height/2+90,100)
+          ellipse(width/2-75,height/2-65,100)
+          ellipse(width/2+75,height/2-65,100)
+
+          textAlign(CENTER)
+          fill(dark)
+          text("DOWN",width/2,height/2+90+10)
+          text("UP",width/2-75,height/2-65+5)
+          text("UP",width/2+75,height/2-65+5)
+        }
+
+        function betw(low, high) {
+          if(frame >= low && frame < high) {
+            return true
+          } return false
+        }
         function windowResized() {
           resizeCanvas(windowWidth, windowHeight);
         }
