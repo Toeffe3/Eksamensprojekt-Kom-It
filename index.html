@@ -17,52 +17,93 @@
   </head>
   <body>
     <div class="frame">
-      <!-- Pulsating -->
       <script type="text/javascript">
 
-        var frame = 0
+        /* GENERAL */
+        var frame = 0         //Control variable for keeping track of animation (dias frame, not time)
 
-        var page = 0
-        var maxWidth
-        var info = false
+        var dark = 50         //Default dark color
+        var bright = 205      //Default bright color
 
-        var dark = 50
-        var bright = 205
+        /* MATTER - ANTIMATTER */
+        var bColor = dark     //Background color
+        var fColor = bright   //Foreground color
+        var dir = true        //The direction for color fading (two-way = true/false)
+        var title = "MATTER"  //The title-text
 
-        var bColor = 50
-        var fColor = 205
-        var dir = true
-        var title = "MATTER"
+        /* ATOM - QUARK */
+        var eT = 0            //Time elapsed for the circulating electron
+        var atomSize = 1;     //Or zoom size for the atom
 
-        var eT = 0;
-
-        var atomSize = 1;
-
+        /* CODE TO BE EXECUTED ONCE ONLY AT START */
         function setup() {
-          createCanvas(innerWidth,innerHeight)
-          maxWidth = innerWidth
-          frameRate(20)
+          createCanvas(innerWidth,innerHeight)  //Create a HTML5 Canvas for the p5.js enviorment
+          frameRate(20)                         //Set the frameRate
         }
 
+        /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
-          if (mouseIsPressed) {
-            frame++
-            console.log(frame)
+          if (mouseIsPressed) {   //When mouse is pressed down (ether right or left) do:
+            frame++               //Increase frame (continue "sliding")
+
+            console.log(frame)    //For Debugging purposes only
+          }
+          frameSet()              //Call frameSet (Check for anything new shall happen in the current frame)
+        }
+
+        /* Checks if anything new shall be exectued in the current frame */
+        function frameSet() {
+          if (betw(0, 200)) {     //If frame is inbetween 0 and 200 do:
+            atom()                //Call atom
           }
 
-          frameSet()
+          if (betw(200, 400)) {   //If frame is inbetween 200 and 400 do:
+            atom(true)            //Call atom with true parameter
+            quark()               //And call quark
+          }
+        }
 
-          //console.log("page: "+page)
-          // if(info) {
-          //   scroll = 100
-          // }
-          // if(page == 0) {
-          //   page0()
-          // } else if(page==2) {
-          //   page1()
-          // } else if(page==4){
-          //   page2()
-          // }
+        /*  */
+        function betw(low,high){if(frame>=low&&frame<high){return true}return false}
+        function windowResized(){resizeCanvas(windowWidth,windowHeight)}
+
+        function atom(x) {        //x is used to modify behavior for som part of the function
+          if (!x) {               //If x is not defined or false do:
+            if (mouseIsPressed) { //Check if mouse is pressed down (either left or right):
+              atomSize+=2         //Increase atom
+            }
+          }
+
+          var eX = cos(eT)*(150+atomSize) //Create or re-define the electron's x position (Using cos to make it orbit)
+          var eY = sin(eT)*(150+atomSize) //Create or re-define the electron's y position (Using sin to make it orbit)
+          eT+=0.02                        //Increase elapsed time
+
+          background(bright)
+          fill(bright)
+          ellipse(width/2,height/2,300+atomSize*2)
+          fill(dark)
+          ellipse(width/2,height/2,50+atomSize)
+          ellipse(width/2+eX,height/2+eY,20+atomSize/10)
+
+          if (x) {                //If x is true do:
+            fill(bright)          //Set fill-color
+            textSize(24)          //Set font/text size
+            text("e-",width/2+eX,height/2+eY+7) //Create a text at the electron's position
+          }
+        }
+
+        function quark() {
+
+          fill(bright)
+          ellipse(width/2,height/2+90,100)
+          ellipse(width/2-75,height/2-65,100)
+          ellipse(width/2+75,height/2-65,100)
+
+          textAlign(CENTER)
+          fill(dark)
+          text("DOWN",width/2,height/2+90+10)
+          text("UP",width/2-75,height/2-65+5)
+          text("UP",width/2+75,height/2-65+5)
         }
 
         function page1() {
@@ -78,7 +119,7 @@
           textAlign(CENTER)
           text(title, width/2,height/2-100)
           textSize(20)
-          text("[Use arrowkeys or spacebar]", width/2,height-50)
+          text("[Hold højre eller venstre museknap nede]", width/2,height-50)
           if(dir) {
             bColor++
             fColor--
@@ -98,62 +139,6 @@
           }
         }
 
-        function frameSet() {
-          if (betw(0, 200)) {
-            atom()
-          }
-
-          if (betw(200, 400)) {
-            atom(true)
-            quark()
-          } else if (mouseIsPressed) {
-            atomSize+=2
-          }
-
-
-        }
-
-        function atom(x) {
-
-          var eX = cos(eT)*(150+atomSize)
-          var eY = sin(eT)*(150+atomSize)
-          eT+=0.02
-
-          background(bright)
-          fill(bright)
-          ellipse(width/2,height/2,300+atomSize*2)
-          fill(dark)
-          ellipse(width/2,height/2,50+atomSize)
-          ellipse(width/2+eX,height/2+eY,20+atomSize/10)
-          if (x) {
-            fill(bright)
-            textSize(24)
-            text("e-",width/2+eX,height/2+eY+7)
-          }
-        }
-
-        function quark() {
-
-          fill(bright)
-          ellipse(width/2,height/2+90,100)
-          ellipse(width/2-75,height/2-65,100)
-          ellipse(width/2+75,height/2-65,100)
-
-          textAlign(CENTER)
-          fill(dark)
-          text("DOWN",width/2,height/2+90+10)
-          text("UP",width/2-75,height/2-65+5)
-          text("UP",width/2+75,height/2-65+5)
-        }
-
-        function betw(low, high) {
-          if(frame >= low && frame < high) {
-            return true
-          } return false
-        }
-        function windowResized() {
-          resizeCanvas(windowWidth, windowHeight);
-        }
       </script>
     </div>
   </body>
