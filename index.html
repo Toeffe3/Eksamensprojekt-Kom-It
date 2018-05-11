@@ -7,7 +7,7 @@
     <script src="Libraries/p5.js" charset="utf-8"></script>
     <script src="Libraries/p5.dom.js" charset="utf-8"></script>
     <script src="HID.js" charset="utf-8"></script>
-    <script src="transition.js" charset="utf-8"></script>
+    <script src="json.js" charset="utf-8"></script>
     <!-- <script src="Libraries/p5.min.js" charset="utf-8"></script> -->
     <!-- Scripts -->
 
@@ -68,16 +68,24 @@
           if (mouseIsPressed) {   //When mouse is pressed down (ether right or left) do:
             frame++               //Increase frame (continue "sliding")
 
-            console.log(frame)    //For Debugging purposes only
+            //console.log(frame)    //For Debugging purposes only
           }
           frameSet()              //Call frameSet (Check for anything new shall happen in the current frame)
+          UI()
 
-          fill(255)
           noStroke()
-          rect(area.w,0,area.W,area.h)
-          fill(0)
-          rect(0,area.h,area.W,area.H)
+          fill(dark)
 
+          var cText = showtext()
+          if(cText != false) {
+            push()
+            textAlign(LEFT)
+            textSize(32)
+            text(cText.Header, area.w+10, 30)
+            textSize(18)
+            text(cText.Content, area.w+10, 50, 320)
+            pop()
+          }
         }
 
         /* Checks if anything new shall be exectued in the current frame */
@@ -86,21 +94,39 @@
             atom()                //Call atom
           }
 
-          if (betw(200, 400)) {   //If frame is inbetween 200 and 400 do:
+          if (betw(200, 250)) {   //If frame is inbetween 200 and 400 do:
             atom(true)            //Call atom with true parameter
             quark()               //And call quark
           }
+
+          if (betw(250, 300)) {
+            transition(250)
+          }
+        }
+
+        function UI() {
+          fill(bright)
+          rect(area.w,0,area.W/2,area.h)
+
+          fill(dark)
+          stroke(bright)
+          strokeWeight(2)
+          rect(0,area.h,area.W/4,area.H/2)
+          rect(area.W/4,area.h,area.W/4,area.H/2)
+          rect(area.W/2,area.h,area.W/4,area.H/2)
+          rect(area.W-area.W/4,area.h,area.W/4,area.H/2)
+
+          fill(bright)
         }
 
         /*  */
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
-        function windowResized(){resizeCanvas(windowWidth,windowHeight)}
+        function showtext(){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i]}}}
+        function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H = windowHeight;area.W = windowWidth;area.h = windowHeight-20;area.w = windowWidth-350;area.C.H = windowHeight/2;area.C.W = windowWidth/2;area.C.h = (windowHeight-20)/2;area.C.w = (windowWidth-350)/2}
 
         function atom(x) {        //x is used to modify behavior for som part of the function
           if (!x) {               //If x is not defined or false do:
-            if (mouseIsPressed) { //Check if mouse is pressed down (either left or right):
-              atomSize+=2         //Increase atom
-            }
+            atomSize+=1   //Increase atom
           }
 
           var eX = cos(eT)*(150+atomSize) //Create or re-define the electron's x position (Using cos to make it orbit)
@@ -108,6 +134,7 @@
           eT+=0.02                        //Increase elapsed time
 
           background(bright)
+          stroke(dark)
           fill(bright)
           ellipse(area.C.w,area.C.h,300+atomSize*2)
           fill(dark)
@@ -119,6 +146,11 @@
             textSize(24)          //Set font/text size
             text("e-",area.C.w+eX,area.C.h+eY+7) //Create a text at the electron's position
           }
+        }
+
+        function transition(x, y) {
+          varz = frame - x
+
         }
 
         function quark() {
@@ -167,7 +199,7 @@
             }
           }
         }
-
+        setInterval(function(){console.log(frame);frame++},100)
       </script>
     </div>
   </body>
