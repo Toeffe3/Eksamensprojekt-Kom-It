@@ -9,7 +9,8 @@ var json = [
     "from": 0,
     "to": 1,
     "Header": "Velkommen!",
-    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antimatter/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.\n\n\n\n\n\n\n\n\n\nDette er et produkt (skriftlig formidling undtaget) lavet af Victor Jacobsen til Emil Mattisen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
+    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antimatter/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.",
+    "Extra": "Dette er et produkt (skriftlig formidling undtaget) lavet af Victor Jacobsen til Emil Mattisen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
   },{
     "from": 1,
     "to": 100,

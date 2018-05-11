@@ -6,35 +6,34 @@
     <!-- Libraries -->
     <script src="Libraries/p5.js" charset="utf-8"></script>
     <script src="Libraries/p5.dom.js" charset="utf-8"></script>
+    <!-- Scripts -->
     <script src="HID.js" charset="utf-8"></script>
     <script src="json.js" charset="utf-8"></script>
-    <!-- <script src="Libraries/p5.min.js" charset="utf-8"></script> -->
-    <!-- Scripts -->
-
     <!-- Other -->
     <link rel="stylesheet" href="style.css">
-
   </head>
-  <body>
+  <body oncontextmenu="return false;">
     <div class="frame">
       <script type="text/javascript">
 
         /* GENERAL */
-        var anicontrol = 1    //Controls Automatic(play) and Step-bystep-mode
-        var frame = 0         //Control variable for keeping track of animation (dias frame, not time)
+        var anicontrol = 1      //Controls Automatic(play) and Step-bystep-mode
+        var frame = 0           //Control variable for keeping track of animation (dias frame, not time)
 
-        var hold = false      //Whether mouse is hold down
-        var active_button = ""//Active UI button
+        var hold = false        //Whether mouse is hold down
+        var mouseRel = false    //For checking the mouse is released
+        var pause = true       //True if mouseRel, but keeps true afterwards
+        var active_button = ""  //Active UI button
 
-        var dark = 50         //Default dark color
-        var bright = 205      //Default bright color
+        var dark = 50           //Default dark color
+        var bright = 205        //Default bright color
 
         var area = {
-          "H": 0,             //Browser height
-          "W": 0,             //Browser width
-          "h": 0,             //Animation-area height
-          "w": 0,             //Animation-area width
-          "C": {              //Center values for those;
+          "H": 0,               //Browser height
+          "W": 0,               //Browser width
+          "h": 0,               //Animation-area height
+          "w": 0,               //Animation-area width
+          "C": {                //Center values for those;
             "H": 0,
             "W": 0,
             "h": 0,
@@ -43,13 +42,13 @@
         }
 
         /* MATTER - ANTIMATTER */
-        var bColor = dark     //Background color
-        var fColor = bright   //Foreground color
-        var dir = true        //The direction for color fading (two-way = true/false)
-        var title = "MATTER"  //The title-text
+        var bColor = dark       //Background color
+        var fColor = bright     //Foreground color
+        var dir = true          //The direction for color fading (two-way = true/false)
+        var title = "ANTI-MATTER"    //The title-text
 
         /* ATOM - QUARK */
-        var atomSize = 1;     //Or zoom size for the atom
+        var atomSize = 1;       //Or zoom size for the atom
 
         /* CODE TO BE EXECUTED ONCE ONLY AT START */
         function setup() {
@@ -68,10 +67,14 @@
 
         /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
-          if (mouseIsPressed && mouseY < area.h) {  //When mouse is pressed down (ether right or left) do:
+          if (mouseIsPressed && mouseButton === LEFT && mouseY < area.h) {  //When mouse is pressed down (right) do:
             frame++                                 //Increase frame (continue "sliding")
-            //console.log(frame)                      //For Debugging purposes only
+            //console.log(frame)                    //For Debugging purposes only
+          } else if (mouseIsPressed && mouseButton === RIGHT && mouseY < area.h && frame > 0.25) {  //When mouse is pressed down (left) do:
+            frame--                                 //Increase frame (continue "sliding")
+            //console.log(frame)                    //For Debugging purposes only
           }
+
           frameSet()                                //Call frameSet (Check for anything new shall happen in the current frame)
           UI()                                      //Call and update UI (User Interface and graphics)
 
@@ -79,13 +82,16 @@
           fill(dark)
 
           var cText = showtext()
-          if(cText != false) {
+          if(cText) {
             push()
             textAlign(LEFT)
             textSize(32)
             text(cText.Header, area.w+10, 30)
             textSize(18)
             text(cText.Content, area.w+10, 55, 320)
+            if (cText.Extra) {
+              text(cText.Extra, area.w+10, area.h-75, 330)
+            }
             pop()
           }
         }
@@ -112,7 +118,7 @@
           stroke(bright)
           strokeWeight(2)
 
-          if (active_button == "START") {
+          if (active_button == "START" || mouseIsPressed) {
             rect(area.W/4,area.h,area.W/4,area.H-area.h)
             rect(area.W/2,area.h,area.W/4,area.H-area.h)
             rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
@@ -130,7 +136,7 @@
             rect(area.W/2,area.h,area.W/4,area.H-area.h)
             fill(150,150,25)
             rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
-          } else if (active_button == "PAUSE") {
+          } else if (active_button == "PAUSE" && !mouseIsPressed || pause) {
             rect(0,area.h,area.W/4,area.H-area.h)
             rect(area.W/2,area.h,area.W/4,area.H-area.h)
             rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
@@ -210,7 +216,7 @@
               animation_control("NEXT")
             }
 
-            setTimeout(function(){hold=false},1500)
+            setTimeout(function(){hold=false},1000)
           }
         }
 
@@ -242,13 +248,7 @@
           }
         }
 
-        function transition(x, y) {
-          varz = frame - x
-
-        }
-
         function quark() {
-
           fill(bright)
           ellipse(area.C.w,area.C.h+90,100)
           ellipse(area.C.w-75,area.C.h-65,100)
@@ -265,7 +265,7 @@
           background(bColor)
           noStroke()
           fill(fColor)
-          ellipse(area.C.w,area.C.h,50,50)
+          ellipse(area.C.w,area.C.h,50+atomSize)
           textSize(40)
           textAlign(CENTER)
           text(title, area.C.w,area.C.h-100)
@@ -282,10 +282,10 @@
             dir = !dir
           }
           if(bColor == fColor+1) {
-            if(title == "ANTI-MATTER") {
-              title = "MATTER"
-            } else {
+            if(title == "MATTER") {
               title = "ANTI-MATTER"
+            } else {
+              title = "MATTER"
             }
           }
         }
@@ -303,6 +303,7 @@
             for (var i = 1; i < interval_id; i++) { //Cycle throu all intervals
               clearInterval(i)                      //to clearing all intervals
             }
+            setTimeout(function(){hold=false},1000)
             anicontrol = 1
           } else if (state == "NEXT") {
             var lastData = showtext()
@@ -315,7 +316,7 @@
                 animation_control("PAUSE")
               }
             },25)
-          } else if (state == "PREV") {
+          } else if (state == "PREV" && frame > 0) {
             var lastData = showtext()
             anicontrol = setInterval(function() {
               console.log(frame)
