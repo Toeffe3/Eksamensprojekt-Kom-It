@@ -1,7 +1,7 @@
 //Keyboard and mouse control
 var scroll = 0
 
-function keyPressed() {
+function keyPressed(e) {
   if(e>0){return}
   if(keyCode == LEFT_ARROW) {
 
@@ -16,7 +16,7 @@ function keyPressed() {
   } else if(keyCode == 123) { //F12
 
   } else if(keyCode == 36) {  //Home
-    
+
   } else {
     return false
   }
