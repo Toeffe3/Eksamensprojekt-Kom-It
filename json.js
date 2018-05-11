@@ -1,6 +1,17 @@
 var json = [
   {
+    "from": -1000,
+    "to": 0,
+    "Header": "",
+    "Content": ""
+  },
+  {
     "from": 0,
+    "to": 1,
+    "Header": "Velkommen!",
+    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antimatter/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.\n\n\n\n\n\n\n\n\n\nDette er et produkt (skriftlig formidling undtaget) lavet af Victor Jacobsen til Emil Mattisen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
+  },{
+    "from": 1,
     "to": 100,
     "Header": "Atomet",
     "Content": "Atomer er lavet af protoner, elektroner og neutroner. Protoner og neutroner består af kvarks som er de bliver kaldt de ‘fundamentale partikler’."

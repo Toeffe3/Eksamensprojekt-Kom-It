@@ -20,7 +20,11 @@
       <script type="text/javascript">
 
         /* GENERAL */
+        var anicontrol = 1    //Controls Automatic(play) and Step-bystep-mode
         var frame = 0         //Control variable for keeping track of animation (dias frame, not time)
+
+        var hold = false      //Whether mouse is hold down
+        var active_button = ""//Active UI button
 
         var dark = 50         //Default dark color
         var bright = 205      //Default bright color
@@ -45,7 +49,6 @@
         var title = "MATTER"  //The title-text
 
         /* ATOM - QUARK */
-        var eT = 0            //Time elapsed for the circulating electron
         var atomSize = 1;     //Or zoom size for the atom
 
         /* CODE TO BE EXECUTED ONCE ONLY AT START */
@@ -65,13 +68,12 @@
 
         /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
-          if (mouseIsPressed) {   //When mouse is pressed down (ether right or left) do:
-            frame++               //Increase frame (continue "sliding")
-
-            //console.log(frame)    //For Debugging purposes only
+          if (mouseIsPressed && mouseY < area.h) {  //When mouse is pressed down (ether right or left) do:
+            frame++                                 //Increase frame (continue "sliding")
+            //console.log(frame)                      //For Debugging purposes only
           }
-          frameSet()              //Call frameSet (Check for anything new shall happen in the current frame)
-          UI()
+          frameSet()                                //Call frameSet (Check for anything new shall happen in the current frame)
+          UI()                                      //Call and update UI (User Interface and graphics)
 
           noStroke()
           fill(dark)
@@ -83,23 +85,21 @@
             textSize(32)
             text(cText.Header, area.w+10, 30)
             textSize(18)
-            text(cText.Content, area.w+10, 50, 320)
+            text(cText.Content, area.w+10, 55, 320)
             pop()
           }
         }
 
         /* Checks if anything new shall be exectued in the current frame */
         function frameSet() {
-          if (betw(0, 200)) {     //If frame is inbetween 0 and 200 do:
+          if (betw(0, 1)) {
+            startpage()
+          } else if (betw(1, 200)) {     //If frame is inbetween 0 and 200 do:
             atom()                //Call atom
-          }
-
-          if (betw(200, 250)) {   //If frame is inbetween 200 and 400 do:
+          } else if (betw(200, 250)) {   //If frame is inbetween 200 and 400 do:
             atom(true)            //Call atom with true parameter
             quark()               //And call quark
-          }
-
-          if (betw(250, 300)) {
+          } else if (betw(250, 300)) {
             transition(250)
           }
         }
@@ -111,27 +111,121 @@
           fill(dark)
           stroke(bright)
           strokeWeight(2)
-          rect(0,area.h,area.W/4,area.H/2)
-          rect(area.W/4,area.h,area.W/4,area.H/2)
-          rect(area.W/2,area.h,area.W/4,area.H/2)
-          rect(area.W-area.W/4,area.h,area.W/4,area.H/2)
+
+          if (active_button == "START") {
+            rect(area.W/4,area.h,area.W/4,area.H-area.h)
+            rect(area.W/2,area.h,area.W/4,area.H-area.h)
+            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
+            fill(0,200,25)
+            rect(0,area.h,area.W/4,area.H-area.h)
+          } else if (active_button == "PREV") {
+            rect(0,area.h,area.W/4,area.H-area.h)
+            rect(area.W/4,area.h,area.W/4,area.H-area.h)
+            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
+            fill(150,150,25)
+            rect(area.W/2,area.h,area.W/4,area.H-area.h)
+          } else if (active_button == "NEXT") {
+            rect(0,area.h,area.W/4,area.H-area.h)
+            rect(area.W/4,area.h,area.W/4,area.H-area.h)
+            rect(area.W/2,area.h,area.W/4,area.H-area.h)
+            fill(150,150,25)
+            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
+          } else if (active_button == "PAUSE") {
+            rect(0,area.h,area.W/4,area.H-area.h)
+            rect(area.W/2,area.h,area.W/4,area.H-area.h)
+            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
+            fill(230,0,10)
+            rect(area.W/4,area.h,area.W/4,area.H-area.h)
+          } else {
+            rect(0,area.h,area.W/4,area.H-area.h)
+            rect(area.W/4,area.h,area.W/4,area.H-area.h)
+            rect(area.W/2,area.h,area.W/4,area.H-area.h)
+            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
+          }
+
+          fill(255)
+          noStroke()
+
+          beginShape()    //Start arrow
+          vertex(area.C.W/4, area.h+5)
+          vertex(area.C.W/4+10, area.h+10)
+          vertex(area.C.W/4, area.h+15)
+          endShape(CLOSE)
+          beginShape()    //Pause button
+          vertex(area.C.W/1.35-5, area.h+5)
+          vertex(area.C.W/1.35-1, area.h+5)
+          vertex(area.C.W/1.35-1, area.h+15)
+          vertex(area.C.W/1.35-5, area.h+15)
+          endShape(CLOSE)
+          beginShape()
+          vertex(area.C.W/1.35+1, area.h+5)
+          vertex(area.C.W/1.35+5, area.h+5)
+          vertex(area.C.W/1.35+5, area.h+15)
+          vertex(area.C.W/1.35+1, area.h+15)
+          endShape(CLOSE) //EO Pause button
+          beginShape()    //Start step-arrow-back
+          vertex(area.C.W*1.25-12, area.h+15)
+          vertex(area.C.W*1.25-12, area.h+5)
+          vertex(area.C.W*1.25-9, area.h+5)
+          vertex(area.C.W*1.25-9, area.h+15)
+          vertex(area.C.W*1.25, area.h+15)
+          vertex(area.C.W*1.25-10, area.h+10)
+          vertex(area.C.W*1.25, area.h+5)
+          vertex(area.C.W*1.25, area.h+10)
+          vertex(area.C.W*1.25-3, area.h+10)
+          vertex(area.C.W*1.25+7, area.h+5)
+          vertex(area.C.W*1.25+7, area.h+15)
+          vertex(area.C.W*1.25-3, area.h+10)
+          vertex(area.C.W*1.25, area.h+10)
+          vertex(area.C.W*1.25, area.h+15)
+          endShape(CLOSE)
+          beginShape()    //Start step-arrow-forward
+          vertex(area.C.W*1.75, area.h+15)
+          vertex(area.C.W*1.75, area.h+10)
+          vertex(area.C.W*1.75+3, area.h+10)
+          vertex(area.C.W*1.75-7, area.h+15)
+          vertex(area.C.W*1.75-7, area.h+5)
+          vertex(area.C.W*1.75+3, area.h+10)
+          vertex(area.C.W*1.75, area.h+10)
+          vertex(area.C.W*1.75, area.h+5)
+          vertex(area.C.W*1.75+10, area.h+10)
+          vertex(area.C.W*1.75, area.h+15)
+          vertex(area.C.W*1.75+9, area.h+15)
+          vertex(area.C.W*1.75+9, area.h+5)
+          vertex(area.C.W*1.75+12, area.h+5)
+          vertex(area.C.W*1.75+12, area.h+15)
+          endShape(CLOSE)
 
           fill(bright)
+
+          if (mouseIsPressed && !hold) {    //If mouse is pressed, and only the first time if hold down do
+            hold = true                     //Preventing if-statement to execute more than once
+            if (mouseX >= 0 && mouseX <= area.W/4 && mouseY > area.h) { //Mouse over button 1
+              animation_control("START")    //Start autoplay-animation
+            } else if (mouseX >= area.W/4 && mouseX <= area.W/2 && mouseY > area.h) { //Mouse over button 2
+              animation_control("PAUSE")    //Stop autoplay-animation
+            } else if (mouseX >= area.W/2 && mouseX <= area.W/4+area.W/2 && mouseY > area.h) { //Mouse over button 3
+              animation_control("PREV")
+            } else if (mouseX >= area.W-area.W/4 && mouseX <= area.W && mouseY > area.h) { //Mouse over button 4
+              animation_control("NEXT")
+            }
+
+            setTimeout(function(){hold=false},1500)
+          }
         }
 
-        /*  */
+        /* Self defined (comprimized) functions */
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
         function showtext(){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i]}}}
         function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H = windowHeight;area.W = windowWidth;area.h = windowHeight-20;area.w = windowWidth-350;area.C.H = windowHeight/2;area.C.W = windowWidth/2;area.C.h = (windowHeight-20)/2;area.C.w = (windowWidth-350)/2}
 
         function atom(x) {        //x is used to modify behavior for som part of the function
           if (!x) {               //If x is not defined or false do:
-            atomSize+=1   //Increase atom
+            atomSize=frame*2      //Increase atom
           }
 
-          var eX = cos(eT)*(150+atomSize) //Create or re-define the electron's x position (Using cos to make it orbit)
-          var eY = sin(eT)*(150+atomSize) //Create or re-define the electron's y position (Using sin to make it orbit)
-          eT+=0.02                        //Increase elapsed time
+          var eX = cos(frameCount*0.05)*(150+atomSize) //Create or re-define the electron's x position (Using cos to make it orbit)
+          var eY = sin(frameCount*0.05)*(150+atomSize) //Create or re-define the electron's y position (Using sin to make it orbit)
 
           background(bright)
           stroke(dark)
@@ -167,11 +261,7 @@
           text("UP",area.C.w+75,area.C.h-65+5)
         }
 
-        function page1() {
-
-          //createElement('H1', data.zero.header)
-          //createElement('P', data.zero.content)
-
+        function startpage() {
           background(bColor)
           noStroke()
           fill(fColor)
@@ -199,7 +289,45 @@
             }
           }
         }
-        setInterval(function(){console.log(frame);frame++},100)
+
+        function animation_control(state) {
+          if(state == "START") {
+            anicontrol = setInterval(function() {
+              console.log(frame)
+              active_button = "START"
+              frame+=0.25
+            },25)
+          } else if (state == "PAUSE") {
+            active_button = "PAUSE"
+            var interval_id = setInterval("", 9999) //Get a reference to the last
+            for (var i = 1; i < interval_id; i++) { //Cycle throu all intervals
+              clearInterval(i)                      //to clearing all intervals
+            }
+            anicontrol = 1
+          } else if (state == "NEXT") {
+            var lastData = showtext()
+            anicontrol = setInterval(function() {
+              console.log(frame)
+              active_button = "NEXT"
+              if (lastData == showtext()) {
+                frame+=0.25
+              } else {
+                animation_control("PAUSE")
+              }
+            },25)
+          } else if (state == "PREV") {
+            var lastData = showtext()
+            anicontrol = setInterval(function() {
+              console.log(frame)
+              if (lastData == showtext() || frame < 0) {
+                active_button = "PREV"
+                frame-=0.25
+              } else {
+                animation_control("PAUSE")
+              }
+            },25)
+          }
+        }
       </script>
     </div>
   </body>
