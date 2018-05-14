@@ -9,6 +9,7 @@
     <!-- Scripts -->
     <script src="HID.js" charset="utf-8"></script>
     <script src="json.js" charset="utf-8"></script>
+    <script src="pages.js" charset="utf-8"></script>
     <!-- Other -->
     <link rel="stylesheet" href="style.css">
   </head>
@@ -98,12 +99,12 @@
 
         /* Checks if anything new shall be exectued in the current frame */
         function frameSet() {
-          if (betw(0, 1)) {
+          if (betw(-1, 1)) {
             startpage()
           } else if (betw(1, 200)) {     //If frame is inbetween 0 and 200 do:
             atom()                //Call atom
           } else if (betw(200, 250)) {   //If frame is inbetween 200 and 400 do:
-            atom(true)            //Call atom with true parameter
+            atom()                //Call atom with true parameter
             quark()               //And call quark
           } else if (betw(250, 300)) {
             transition(250)
@@ -224,71 +225,6 @@
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
         function showtext(){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i]}}}
         function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H = windowHeight;area.W = windowWidth;area.h = windowHeight-20;area.w = windowWidth-350;area.C.H = windowHeight/2;area.C.W = windowWidth/2;area.C.h = (windowHeight-20)/2;area.C.w = (windowWidth-350)/2}
-
-        function atom(x) {        //x is used to modify behavior for som part of the function
-          if (!x) {               //If x is not defined or false do:
-            atomSize=frame*2      //Increase atom
-          }
-
-          var eX = cos(frameCount*0.05)*(150+atomSize) //Create or re-define the electron's x position (Using cos to make it orbit)
-          var eY = sin(frameCount*0.05)*(150+atomSize) //Create or re-define the electron's y position (Using sin to make it orbit)
-
-          background(bright)
-          stroke(dark)
-          fill(bright)
-          ellipse(area.C.w,area.C.h,300+atomSize*2)
-          fill(dark)
-          ellipse(area.C.w,area.C.h,50+atomSize)
-          ellipse(area.C.w+eX,area.C.h+eY,20+atomSize/10)
-
-          if (x) {                //If x is true do:
-            fill(bright)          //Set fill-color
-            textSize(24)          //Set font/text size
-            text("e-",area.C.w+eX,area.C.h+eY+7) //Create a text at the electron's position
-          }
-        }
-
-        function quark() {
-          fill(bright)
-          ellipse(area.C.w,area.C.h+90,100)
-          ellipse(area.C.w-75,area.C.h-65,100)
-          ellipse(area.C.w+75,area.C.h-65,100)
-
-          textAlign(CENTER)
-          fill(dark)
-          text("DOWN",area.C.w,area.C.h+90+10)
-          text("UP",area.C.w-75,area.C.h-65+5)
-          text("UP",area.C.w+75,area.C.h-65+5)
-        }
-
-        function startpage() {
-          background(bColor)
-          noStroke()
-          fill(fColor)
-          ellipse(area.C.w,area.C.h,50+atomSize)
-          textSize(40)
-          textAlign(CENTER)
-          text(title, area.C.w,area.C.h-100)
-          textSize(20)
-          text("[Hold højre eller venstre museknap nede]", area.C.w,area.h-50)
-          if(dir) {
-            bColor++
-            fColor--
-          } else if (!dir) {
-            bColor--
-            fColor++
-          }
-          if(bColor >= bright || bColor <= dark) {
-            dir = !dir
-          }
-          if(bColor == fColor+1) {
-            if(title == "MATTER") {
-              title = "ANTI-MATTER"
-            } else {
-              title = "MATTER"
-            }
-          }
-        }
 
         function animation_control(state) {
           if(state == "START") {
