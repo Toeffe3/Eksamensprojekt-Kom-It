@@ -25,8 +25,12 @@ function keyPressed(e) {
   } else if(keyCode == 123) { //F12
 
   } else if(keyCode == 36) {  //Home
+<<<<<<< HEAD
     frame = 0
     atomSize = 1
+=======
+
+>>>>>>> db00d03fa3fd323df651d08bd7fb76d193a46d98
   } else {
     return false
   }
