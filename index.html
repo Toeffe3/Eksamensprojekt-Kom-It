@@ -47,6 +47,9 @@
         var fColor = bright     //Foreground color
         var dir = true          //The direction for color fading (two-way = true/false)
         var title = "ANTI-MATTER"    //The title-text
+        var ladning = "-"
+        var ladningopp = "+"
+        var l_offset = 9
 
         /* ATOM - QUARK */
         var atomSize = 1;       //Or zoom size for the atom
@@ -91,7 +94,7 @@
             textSize(18)
             text(cText.Content, area.w+10, 55, 320)
             if (cText.Extra) {
-              text(cText.Extra, area.w+10, area.h-75, 330)
+              text(cText.Extra, area.w+10, area.h-100, 330, 100)
             }
             pop()
           }
@@ -99,15 +102,17 @@
 
         /* Checks if anything new shall be exectued in the current frame */
         function frameSet() {
-          if (betw(-1, 1)) {
+          if (betw(-1, 100)) {
             startpage()
-          } else if (betw(1, 200)) {     //If frame is inbetween 0 and 200 do:
+          } else if (betw(100, 300)) {     //If frame is inbetween 0 and 200 do:
             atom()                //Call atom
-          } else if (betw(200, 250)) {   //If frame is inbetween 200 and 400 do:
+          } else if (betw(300, 450)) {   //If frame is inbetween 200 and 400 do:
             atom()                //Call atom with true parameter
             quark()               //And call quark
-          } else if (betw(250, 300)) {
-            transition(250)
+          } else if (betw(450, 500)) {
+            collide()//transition(250)
+          } else if (betw(500,550)) {
+            collide()
           }
         }
 
@@ -143,11 +148,6 @@
             rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
             fill(230,0,10)
             rect(area.W/4,area.h,area.W/4,area.H-area.h)
-          } else {
-            rect(0,area.h,area.W/4,area.H-area.h)
-            rect(area.W/4,area.h,area.W/4,area.H-area.h)
-            rect(area.W/2,area.h,area.W/4,area.H-area.h)
-            rect(area.W-area.W/4,area.h,area.W/4,area.H-area.h)
           }
 
           fill(255)
@@ -169,7 +169,7 @@
           vertex(area.C.W/1.35+5, area.h+5)
           vertex(area.C.W/1.35+5, area.h+15)
           vertex(area.C.W/1.35+1, area.h+15)
-          endShape(CLOSE) //EO Pause button
+          endShape(CLOSE)
           beginShape()    //Start step-arrow-back
           vertex(area.C.W*1.25-12, area.h+15)
           vertex(area.C.W*1.25-12, area.h+5)
