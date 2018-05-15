@@ -42,7 +42,7 @@
           }
         }
 
-        /* MATTER - ANTIMATTER */
+        /* ATOM */
         var bColor = dark       //Background color
         var fColor = bright     //Foreground color
         var dir = true          //The direction for color fading (two-way = true/false)
@@ -50,10 +50,9 @@
         var ladning = "-"
         var ladningopp = "+"
         var l_offset = 9
+        var atomSize = 1        //Or zoom size for the atom
 
-        /* ATOM - QUARK */
-        var atomSize = 1;       //Or zoom size for the atom
-
+        var grav = 1
         /* CODE TO BE EXECUTED ONCE ONLY AT START */
         function setup() {
           createCanvas(innerWidth,innerHeight)  //Create a HTML5 Canvas for the p5.js enviorment
@@ -71,16 +70,10 @@
 
         /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
-          if (mouseIsPressed && mouseButton === LEFT && mouseY < area.h) {  //When mouse is pressed down (right) do:
-            frame++                                 //Increase frame (continue "sliding")
-            //console.log(frame)                    //For Debugging purposes only
-          } else if (mouseIsPressed && mouseButton === RIGHT && mouseY < area.h && frame > 0.25) {  //When mouse is pressed down (left) do:
-            frame--                                 //Increase frame (continue "sliding")
-            //console.log(frame)                    //For Debugging purposes only
-          }
-
           frameSet()                                //Call frameSet (Check for anything new shall happen in the current frame)
+          HID()
           UI()                                      //Call and update UI (User Interface and graphics)
+          exerciseUI()
 
           noStroke()
           fill(dark)
@@ -102,21 +95,24 @@
 
         /* Checks if anything new shall be exectued in the current frame */
         function frameSet() {
-          if (betw(-1, 100)) {
+          if (betw(-1, 50)) {
             startpage()
-          } else if (betw(100, 300)) {     //If frame is inbetween 0 and 200 do:
-            atom()                //Call atom
-          } else if (betw(300, 450)) {   //If frame is inbetween 200 and 400 do:
-            atom()                //Call atom with true parameter
-            quark()               //And call quark
-          } else if (betw(450, 500)) {
-            collide()//transition(250)
-          } else if (betw(500,550)) {
+          } else if (betw(50, 200)) {  //If frame is inbetween 0 and 200 do:
+            atom()                    //Call atom
+          } else if (betw(75, 200)) { //If frame is inbetween 200 and 400 do:
+            atom()
+            quark()                   //And call quark
+          } else if (betw(200, 300)) {
+            forcet()
+          } else if (betw(300, 400)) {
             collide()
+          } else if (betw(400, 450)) {
+            eequalmcsquared()
           }
         }
 
         function UI() {
+          stroke(dark)
           fill(bright)
           rect(area.w,0,area.W/2,area.h)
 
@@ -204,21 +200,10 @@
           endShape(CLOSE)
 
           fill(bright)
+        }
 
-          if (mouseIsPressed && !hold) {    //If mouse is pressed, and only the first time if hold down do
-            hold = true                     //Preventing if-statement to execute more than once
-            if (mouseX >= 0 && mouseX <= area.W/4 && mouseY > area.h) { //Mouse over button 1
-              animation_control("START")    //Start autoplay-animation
-            } else if (mouseX >= area.W/4 && mouseX <= area.W/2 && mouseY > area.h) { //Mouse over button 2
-              animation_control("PAUSE")    //Stop autoplay-animation
-            } else if (mouseX >= area.W/2 && mouseX <= area.W/4+area.W/2 && mouseY > area.h) { //Mouse over button 3
-              animation_control("PREV")
-            } else if (mouseX >= area.W-area.W/4 && mouseX <= area.W && mouseY > area.h) { //Mouse over button 4
-              animation_control("NEXT")
-            }
+        function exerciseUI() {
 
-            setTimeout(function(){hold=false},1000)
-          }
         }
 
         /* Self defined (comprimized) functions */
