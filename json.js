@@ -38,6 +38,7 @@ var json = [
     "Content": "Tekst"
   }, {
     "from": 300,
+<<<<<<< HEAD
     "to": 350,
     "Header": "Egenskaber 2",
     "Content": "Tekst"
@@ -46,6 +47,11 @@ var json = [
     "to": 400,
     "Header": "E=mc2 1",
     "Content": "Tekst"
+=======
+    "to":400,
+    "Header": "Antimatter Spind",
+    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)"
+>>>>>>> 2e294019625503be8be715c95067de3de1089317
   }, {
     "from": 400,
     "to": 450,
