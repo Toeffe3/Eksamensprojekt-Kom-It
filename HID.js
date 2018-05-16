@@ -32,6 +32,31 @@ function keyPressed(e) {
   }
 }
 
+function HID() {
+  if (mouseIsPressed && mouseButton === LEFT && mouseY < area.h) {  //When mouse is pressed down (right) do:
+    frame++                                 //Increase frame (continue "sliding")
+    //console.log(frame)                    //For Debugging purposes only
+  } else if (mouseIsPressed && mouseButton === RIGHT && mouseY < area.h && frame > 0.25) {  //When mouse is pressed down (left) do:
+    frame--                                 //Increase frame (continue "sliding")
+    //console.log(frame)                    //For Debugging purposes only
+  }
+  
+  if (mouseIsPressed && !hold) {    //If mouse is pressed, and only the first time if hold down do
+    hold = true                     //Preventing if-statement to execute more than once
+    if (mouseX >= 0 && mouseX <= area.W/4 && mouseY > area.h) { //Mouse over button 1
+      animation_control("START")    //Start autoplay-animation
+    } else if (mouseX >= area.W/4 && mouseX <= area.W/2 && mouseY > area.h) { //Mouse over button 2
+      animation_control("PAUSE")    //Stop autoplay-animation
+    } else if (mouseX >= area.W/2 && mouseX <= area.W/4+area.W/2 && mouseY > area.h) { //Mouse over button 3
+      animation_control("PREV")
+    } else if (mouseX >= area.W-area.W/4 && mouseX <= area.W && mouseY > area.h) { //Mouse over button 4
+      animation_control("NEXT")
+    }
+
+    setTimeout(function(){hold=false},1000)
+  }
+}
+
 function mouseReleased() {
   mouseRel = true
   setTimeout(function(){mouseRel=false},10)
