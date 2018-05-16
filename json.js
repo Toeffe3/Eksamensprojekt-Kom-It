@@ -28,7 +28,7 @@ var json = [
   }, {
     "from": 150,
     "to":200,
-    "Header": "Antimatter Spind",
+    "Header": "Antimatter Spin",
     "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)."
   }, {
     "from": 200,
