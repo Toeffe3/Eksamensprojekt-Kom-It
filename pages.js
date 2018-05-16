@@ -78,26 +78,26 @@ function atom() {
 
 function quark() {
   fill(bright)
-  ellipse(area.C.w,area.C.h+90,80)
-  ellipse(area.C.w-75,area.C.h-65,80)
-  ellipse(area.C.w+75,area.C.h-65,80)
+  ellipse(area.C.w,area.C.h+60,65)
+  ellipse(area.C.w-55,area.C.h-45,65)
+  ellipse(area.C.w+55,area.C.h-45,65)
 
   textAlign(CENTER)
   fill(dark)
   noStroke()
   textSize(28)
   textStyle(BOLD)
-  text("↓",area.C.w,area.C.h+90+1)
-  text("↑",area.C.w-75,area.C.h-65)
-  text("↑",area.C.w+75,area.C.h-65)
+  text("↓",area.C.w,area.C.h+60+1)
+  text("↑",area.C.w-55,area.C.h-45)
+  text("↑",area.C.w+55,area.C.h-45)
   textSize(10)
-  text("down",area.C.w,area.C.h+90+16)
-  text("up",area.C.w-75,area.C.h-65+14)
-  text("up",area.C.w+75,area.C.h-65+14)
+  text("down",area.C.w,area.C.h+60+16)
+  text("up",area.C.w-55,area.C.h-45+14)
+  text("up",area.C.w+55,area.C.h-45+14)
   stroke(dark)
   textStyle(NORMAL)
 
-  if (frame >= 15) {
+  if (frame >= 175) {
 
   }
 }

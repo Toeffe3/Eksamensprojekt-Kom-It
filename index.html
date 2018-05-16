@@ -81,7 +81,7 @@
         function frameSet() {
           if (betw(-1, 50)) {           //Call betw() aka. check frame is inbetween
             startpage()                 //Intro/startpage
-          } else if (betw(50, 200)) {
+          } else if (betw(50, 75)) {
             atom()                      //Call atom
           } else if (betw(75, 200)) {
             atom()                      //Call atom
@@ -97,12 +97,19 @@
 
         function UI() {
           if (betw(450, 900)) {
-            return                      //Do nothing if frame is between 450 and 900
+            return false                //Do nothing if frame is between 450 and 900
           }
+
+          stroke(dark)
+          fill(bright)
+          rect(area.w,0,area.W/2,area.h)
+          UIbuttons()
+
           var cText = showtext()        //Get text form JSON
           if(cText) {                   //If text is gratheret
             /* Enclosed code */
             push()
+            fill(dark)
             textAlign(LEFT)                         //Set text alignment
             textSize(32)                            //Set text size
             text(cText.Header, area.w+10, 30)       //Display header from JSON
@@ -115,10 +122,6 @@
             /* Eo: Enclosed code */
           }
 
-          stroke(dark)
-          fill(bright)
-          rect(area.w,0,area.W/2,area.h)
-          UIbuttons()
         }
 
         function exerciseUI() {
