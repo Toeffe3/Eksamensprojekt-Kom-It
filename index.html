@@ -18,23 +18,23 @@
       <script type="text/javascript">
 
         /* GENERAL */
-        var anicontrol = 1      //Controls Automatic(play) and Step-bystep-mode
-        var frame = 0           //Control variable for keeping track of animation (dias frame, not time)
+        var anicontrol = 1        //Controls Automatic(play) and Step-bystep-mode
+        var frame = 0             //Control variable for keeping track of animation (dias frame, not time)
 
-        var hold = false        //Whether mouse is hold down
-        var mouseRel = false    //For checking the mouse is released
-        var pause = true       //True if mouseRel, but keeps true afterwards
-        var active_button = ""  //Active UI button
+        var hold = false          //Whether mouse is hold down
+        var mouseRel = false      //For checking the mouse is released
+        var pause = true          //True if mouseRel, but keeps true afterwards
+        var active_button = ""    //Active UI button
 
-        var dark = 50           //Default dark color
-        var bright = 205        //Default bright color
+        var dark = 50             //Default dark color
+        var bright = 205          //Default bright color
 
         var area = {
-          "H": 0,               //Browser height
-          "W": 0,               //Browser width
-          "h": 0,               //Animation-area height
-          "w": 0,               //Animation-area width
-          "C": {                //Center values for those;
+          "H": 0,                 //Browser height
+          "W": 0,                 //Browser width
+          "h": 0,                 //Animation-area height
+          "w": 0,                 //Animation-area width
+          "C": {                  //Center values for those;
             "H": 0,
             "W": 0,
             "h": 0,
@@ -43,14 +43,14 @@
         }
 
         /* ATOM */
-        var bColor = dark       //Background color
-        var fColor = bright     //Foreground color
-        var dir = true          //The direction for color fading (two-way = true/false)
-        var title = "ANTI-MATTER"    //The title-text
-        var ladning = "-"
-        var ladningopp = "+"
-        var l_offset = 9
-        var atomSize = 1        //Or zoom size for the atom
+        var bColor = dark         //Background color
+        var fColor = bright       //Foreground color
+        var dir = true            //The direction for color fading (two-way = true/false)
+        var title = "ANTI-MATTER" //The title-text
+        var ladning = "-"         //Additonal, changing, text
+        var ladningopp = "+"      //Additonal, changing, text
+        var l_offset = 9          //Text offset
+        var atomSize = 1          //Or zoom size for the atom
 
         var grav = 1
         /* CODE TO BE EXECUTED ONCE ONLY AT START */
@@ -58,6 +58,7 @@
           createCanvas(innerWidth,innerHeight)  //Create a HTML5 Canvas for the p5.js enviorment
           frameRate(20)                         //Set the frameRate
 
+          /* Define sizes */
           area.H = windowHeight
           area.W = windowWidth
           area.h = windowHeight-20
@@ -70,56 +71,78 @@
 
         /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
-          frameSet()                                //Call frameSet (Check for anything new shall happen in the current frame)
-          HID()
-          UI()                                      //Call and update UI (User Interface and graphics)
-          exerciseUI()
-
-          noStroke()
-          fill(dark)
-
-          var cText = showtext()
-          if(cText) {
-            push()
-            textAlign(LEFT)
-            textSize(32)
-            text(cText.Header, area.w+10, 30)
-            textSize(18)
-            text(cText.Content, area.w+10, 55, 320)
-            if (cText.Extra) {
-              text(cText.Extra, area.w+10, area.h-100, 330, 100)
-            }
-            pop()
-          }
+          frameSet()                    //Call frameSet (Check for anything new shall happen in the current frame)
+          HID()                         //Call HID (Human Interface Devises, aka key strokes and mouse)
+          UI()                          //Call and update UI (User Interface and graphics)
+          exerciseUI()                  //Call exerciseUI (new interface for the exercises)
         }
 
         /* Checks if anything new shall be exectued in the current frame */
         function frameSet() {
-          if (betw(-1, 50)) {
-            startpage()
-          } else if (betw(50, 200)) {  //If frame is inbetween 0 and 200 do:
-            atom()                    //Call atom
-          } else if (betw(75, 200)) { //If frame is inbetween 200 and 400 do:
-            atom()
-            quark()                   //And call quark
+          if (betw(-1, 50)) {           //Call betw() aka. check frame is inbetween
+            startpage()                 //Intro/startpage
+          } else if (betw(50, 200)) {
+            atom()                      //Call atom
+          } else if (betw(75, 200)) {
+            atom()                      //Call atom
+            quark()                     //And call quark
           } else if (betw(200, 300)) {
-            forcet()
+            forcet()                    //Call forcet (Force of gravity)
           } else if (betw(300, 400)) {
-            collide()
+            collide()                   //Call collide (Collision between matter and antimatter)
           } else if (betw(400, 450)) {
-            eequalmcsquared()
+            eequalmcsquared()           //Call eequalmcsquared (E=mc^2)
           }
         }
 
         function UI() {
+          if (betw(450, 900)) {
+            return                      //Do nothing if frame is between 450 and 900
+          }
+          var cText = showtext()        //Get text form JSON
+          if(cText) {                   //If text is gratheret
+            /* Enclosed code */
+            push()
+            textAlign(LEFT)                         //Set text alignment
+            textSize(32)                            //Set text size
+            text(cText.Header, area.w+10, 30)       //Display header from JSON
+            textSize(18)                            //Set new text size
+            text(cText.Content, area.w+10, 55, 320) //Display text from JSON
+            if (cText.Extra) {                      //If there is any text tagget "ekstra" display it at the bottom:
+              text(cText.Extra, area.w+10, area.h-100, 330, 100)
+            }
+            pop()
+            /* Eo: Enclosed code */
+          }
+
           stroke(dark)
           fill(bright)
           rect(area.w,0,area.W/2,area.h)
+          UIbuttons()
+        }
 
+        function exerciseUI() {
+          if (!betw(450,900)) {
+            return
+          }
+          background(bright)
+
+
+
+
+
+
+
+
+
+
+
+          UIbuttons()
+        }
+
+        function UIbuttons() {
+          noStroke()
           fill(dark)
-          stroke(bright)
-          strokeWeight(2)
-
           if (active_button == "START" || mouseIsPressed) {
             rect(area.W/4,area.h,area.W/4,area.H-area.h)
             rect(area.W/2,area.h,area.W/4,area.H-area.h)
@@ -202,55 +225,50 @@
           fill(bright)
         }
 
-        function exerciseUI() {
-
-        }
-
         /* Self defined (comprimized) functions */
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
         function showtext(){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i]}}}
-        function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H = windowHeight;area.W = windowWidth;area.h = windowHeight-20;area.w = windowWidth-350;area.C.H = windowHeight/2;area.C.W = windowWidth/2;area.C.h = (windowHeight-20)/2;area.C.w = (windowWidth-350)/2}
+        function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H=windowHeight;area.W=windowWidth;area.h=windowHeight-20;area.w=windowWidth-350;area.C.H=windowHeight/2;area.C.W=windowWidth/2;area.C.h=(windowHeight-20)/2;area.C.w=(windowWidth-350)/2}
 
         function animation_control(state) {
-          if(state == "START") {
-            anicontrol = setInterval(function() {
-              console.log(frame)
-              active_button = "START"
-              frame+=0.25
-            },25)
-          } else if (state == "PAUSE") {
-            active_button = "PAUSE"
+          if(state == "START") {                    //if pause is called:
+            anicontrol = setInterval(function() {   //Run async function:
+              active_button = "START"               //Set active_button as START
+              frame+=0.25                           //Increase frame by 0.25
+            },25)                                   //Every 25 ms
+          } else if (state == "PAUSE") {            //if pause is called:
+            active_button = "PAUSE"                 //Set active_button as PAUSE
             var interval_id = setInterval("", 9999) //Get a reference to the last
             for (var i = 1; i < interval_id; i++) { //Cycle throu all intervals
               clearInterval(i)                      //to clearing all intervals
             }
-            setTimeout(function(){hold=false},1000)
+            setTimeout(function(){hold=false},1000) //Allow user to only click every 1000 ms instead of every ms
             anicontrol = 1
-          } else if (state == "NEXT") {
-            var lastData = showtext()
-            anicontrol = setInterval(function() {
-              console.log(frame)
-              active_button = "NEXT"
-              if (lastData == showtext()) {
-                frame+=0.25
+          } else if (state == "NEXT") {             //if pause is called:
+            var lastData = showtext()               //Get JSON-data a reference-object to stop at change
+            anicontrol = setInterval(function() {   //Run async function:
+              active_button = "NEXT"                //Set active_button as
+              if (lastData == showtext()) {         //If JSON-data has not changed
+                frame += 0.25                       //Increase frame
               } else {
-                animation_control("PAUSE")
+                animation_control("PAUSE")          //Else pause
               }
             },25)
-          } else if (state == "PREV" && frame > 0) {
-            var lastData = showtext()
-            anicontrol = setInterval(function() {
-              console.log(frame)
-              if (lastData == showtext() || frame < 0) {
-                active_button = "PREV"
-                frame-=0.25
+          } else if (state == "PREV" && frame >0) { //if pause is called:
+            var lastData = showtext()               //Get JSON-data a reference-object to stop at change
+            anicontrol = setInterval(function() {   //Run async function:
+              if (lastData == showtext() || frame < 0) {  //If JSON-data has not changed or frame is not the first
+                active_button = "PREV"              //Set active_button as
+                frame -= 0.25                       //Deincrease frame
               } else {
-                animation_control("PAUSE")
+                animation_control("PAUSE")          //Else pause
               }
-            },25)
+            },25)                                   //Every 25 ms
           }
         }
+        /* EOS */
       </script>
     </div>
   </body>
 </html>
+<!-- EOF -->
