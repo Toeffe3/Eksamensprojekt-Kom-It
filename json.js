@@ -29,8 +29,8 @@ var json = [
   }, {
     "from": 300,
     "to":400,
-    "Header": "Spin og Antimatter",
-    "Content": "Kvarks kan være i frorskellige stadier (kaldet spids) som henholdsvis hedder: Up(↑), Down(↓), Top(↥), Bottom(↧), Charm(—) og Stange(〜)."
+    "Header": "Antimatter Spind",
+    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)"
   }, {
     "from": 400,
     "to": 500,
