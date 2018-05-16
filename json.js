@@ -24,12 +24,12 @@ var json = [
     "from": 75,
     "to": 150,
     "Header": "elementar partikler",
-    "Content": "Man deler de fundementale partikler ind i flere grupper. Heraf kvarks og leptons. Protoner og neutroner er bygget af kvarks, hvor imod elektronen er i sig selv en fundamental partikel; som høre ind under gruppen leptons."
+    "Content": "Protoner og neutroner er bygget af kvarks, hvor elektronen i sig selv en fundamental partikel; som hører ind under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som henholdsvis hedder: Up(↑), Down(↓), Top(↥), Bottom(↧), Charm(—) og Stange(〜). Disse stadier er opdelt i par af to modsætninger som; (Up(↑), Down(↓)), (Top(↥), Bottom(↧)) og (Charm(—), Strange(〜)). Kvarks laver en trippel-forbindelse. som bestemmer om det er en proton eller en neutron. En neutron består af en Up(↑) og 2 Down(↓). Neutronen er neutral da, Up(↑) har en ladning på +⅔, mens Down(↓) har en ladning på -⅓. En proton bestårb så af 2 Up(↑) og en Down(↓)."
   }, {
     "from": 150,
     "to":200,
     "Header": "Antimatter Spind",
-    "Content": "Protoner og neutroner er bygget af kvarks, hvor elektronen i sig selv en fundamental partikel; som hører ind under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som henholdsvis hedder: Up(↑), Down(↓), Top(↥), Bottom(↧), Charm(—) og Stange(〜). Disse stadier er opdelt i par af to modsætninger som; (Up(↑), Down(↓)), (Top(↥), Bottom(↧)) og (Charm(—), Strange(〜)). Kvarks laver en trippel-forbindelse. som bestemmer om det er en proton eller en neutron. En neutron består af en Up(↑) og 2 Down(↓). Neutronen er neutral da, Up(↑) har en ladning på +⅔, mens Down(↓) har en ladning på -⅓. En proton bestårb så af 2 Up(↑) og en Down(↓)."
+    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)."
   }, {
     "from": 200,
     "to": 300,
