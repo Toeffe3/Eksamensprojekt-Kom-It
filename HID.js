@@ -40,7 +40,29 @@ function HID() {
     frame--                                 //Increase frame (continue "sliding")
     //console.log(frame)                    //For Debugging purposes only
   }
-  
+  var startC = 0;
+  var d = true;
+  if(frame == 2 && d) {
+    startC = bColor
+    d = false
+  } else {
+    d = true
+  }
+
+  if (betw(1,50)) {
+    if (!d) {
+      return
+    }
+    if(dir) {
+      console.log((205-startC)*frame/50 + (50 + startC));
+      bColor = (150-startC)*frame/50 + (50 + startC)
+      fColor = 155-(150-startC)*frame/50 + (50 + startC)
+    } else if (!dir) {
+      bColor-=3
+      fColor+=3
+    }
+  }
+
   if (mouseIsPressed && !hold) {    //If mouse is pressed, and only the first time if hold down do
     hold = true                     //Preventing if-statement to execute more than once
     if (mouseX >= 0 && mouseX <= area.W/4 && mouseY > area.h) { //Mouse over button 1

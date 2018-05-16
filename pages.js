@@ -1,8 +1,8 @@
 function startpage() {
-  if(dir) {
+  if(dir && frame <= 1) {
     bColor++
     fColor--
-  } else if (!dir) {
+  } else if (!dir && frame <= 1) {
     bColor--
     fColor++
   }
@@ -28,9 +28,9 @@ function startpage() {
   ellipse(area.C.w,area.C.h,50)
   textAlign(CENTER)
   textSize(20)
-  if(!betw(1,100)) {
+  if(!betw(2,100)) {
     text("[Hold højre eller venstre museknap nede]", area.C.w,area.h-50)
-  } else if (betw(1,100)) {
+  } else if (betw(2,100)) {
     noFill()
     stroke(fColor)
     ellipse(area.C.w,area.C.h,150)
@@ -47,7 +47,6 @@ function startpage() {
   text(ladning,area.C.w,area.C.h+l_offset)
   textSize(15)
   text(ladningopp,area.C.w+75,area.C.h+l_offset*25/30-3)
-
 }
 
 function atom() {
