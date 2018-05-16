@@ -16,10 +16,6 @@ var json = [
     "Header": "Kort - Antimatter?",
     "Content": "Antimatter (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antimatter; protoner, elektroner og neutroner - alt det vi kan se."
   }, {
-    "from": 100,
-    "to": 200,
-    "Content": "Antimatter (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\n"Matter er således det modsatte af antimatter; protoner, elektroner og neutroner - alt det vi kan se.
-  },{
     "from": 50,
     "to": 75,
     "Header": "Atomet",
@@ -48,9 +44,6 @@ var json = [
     "from": 350,
     "to": 400,
     "Header": "E=mc2 1",
-    "Content": "Tekst"
-    "to":400,
-    "Header": "Antimatter Spind",
     "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)"
   }, {
     "from": 400,
