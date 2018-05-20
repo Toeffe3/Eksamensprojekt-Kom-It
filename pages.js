@@ -142,7 +142,52 @@ function collide() {
     }
   }
 }
-
+var ran_x = [0,0,0,0,0,0,0,0,0,0]
 function eequalmcsquared() {
+  var emc_speed = 299792458
 
+  background(dark)
+  speed = slider("speed", 30, 200, 350, 2, 17)
+  var emc_speed = round(speed.val/100*299792458)
+
+  mass = slider("need", 30, 250, 350, 2, 17)
+  var emc_mass = mass.val/100
+  var atoms = (emc_mass*5.97538413242604*pow(10,17))
+
+  var emc_energy = (emc_mass*pow(10,-9))*pow(emc_speed,2)
+
+  textSize(10)
+  strokeWeight(0)
+
+  fill(bright)
+  textSize(24)
+  textAlign(LEFT)
+  text("Fart: "+numberWithCommas(emc_speed)+" m/s ("+round(emc_speed/2997924.58)+"% af lysets hastighed)", 20, 30)
+  text("Vægt: "+numberWithCommas(emc_mass)+" µg ("+numberWithCommas(round(atoms/pow(10,15)))+" billiarder helium atomer)", 20, 70)
+  text("Energi: "+round(emc_energy/pow(10, 6)*100000)/100000+" Penta Joule ("+round(emc_energy/pow(10, 6)/4.184/pow(10, -3))*pow(10,-3)+" kg TNT)", 20, 110)
+
+  var t = 20
+  var u = area.C.h
+  var v = area.w-40
+  var w = area.h
+  var j = 0
+  var e = (w-u)/10
+  fill(bright)
+  //rect(t, u, v, w/2-50)
+
+  for (var i = 0; i < 10; i++) {
+    if(ran_x[i] <= random()*50+20) {
+      ran_x[i] = random()*v+v
+    }
+    var j = ran_x[i] - speed.val*2
+    // noStroke()
+    // fill(bright)
+    // rect(t, u+e*i, v, 10)
+    stroke(bright)
+    strokeWeight(2)
+    line(j, u+e*(i), j+20+(speed.val), u+e*(i))
+    ellipse((v+t)/2, (w+u)/2-25, emc_mass*100)
+    ran_x[i] = j
+  }
+  noStroke()
 }

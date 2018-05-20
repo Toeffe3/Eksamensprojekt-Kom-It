@@ -42,6 +42,13 @@
           }
         }
 
+        var dot = [0]
+        var dotId = ["0"]
+
+        var mpc
+
+        var slide
+
         /* ATOM */
         var bColor = dark         //Background color
         var fColor = bright       //Foreground color
@@ -52,7 +59,7 @@
         var l_offset = 9          //Text offset
         var atomSize = 1          //Or zoom size for the atom
 
-        var grav = 1
+        var grav = 1              //gravity
         /* CODE TO BE EXECUTED ONCE ONLY AT START */
         function setup() {
           createCanvas(innerWidth,innerHeight)  //Create a HTML5 Canvas for the p5.js enviorment
@@ -71,6 +78,9 @@
 
         /* CODE TO BE EXECUTEDE REPEATLY */
         function draw() {
+          if (frame < 450) {
+            frame = 450
+          }
           frameSet()                    //Call frameSet (Check for anything new shall happen in the current frame)
           HID()                         //Call HID (Human Interface Devises, aka key strokes and mouse)
           UI()                          //Call and update UI (User Interface and graphics)
@@ -95,9 +105,43 @@
           }
         }
 
+        function slider(i, slx, sly, slw, slt, dts) {
+          for (var e = 0; e < dotId.length; e++) {
+            if (dotId[e] == i) {
+              stroke(bright)
+              strokeWeight(slt)
+              line(slx, sly, slx+slw, sly)
+              if (mouseX >= dot[e]-dts && mouseX <= dot[e]+dts && mouseY <= sly+dts && mouseY >= sly-dts && mouseIsPressed) {
+                dot[e] = mouseX
+              }
+              if (dot[e]<slx) {
+                dot[e] = slx
+              } else if (dot[e]>slx+slw) {
+                dot[e] = slx+slw
+              }
+              ellipse(dot[e], sly, dts)
+
+              var sl = {
+                "id":i,
+                "x":slx,
+                "y":sly,
+                "width":slw,
+                "thickness":slt,
+                "val":round((dot[e]-slx)/slw*100,0)
+              }
+              return sl
+            } else {
+              append(dotId, i)
+              append(dot, 0)
+            }
+          }
+        }
+
+
         function UI() {
+
           if (betw(450, 900)) {
-            return false                //Do nothing if frame is between 450 and 900
+            return false                //Do nothing (leave UI()) if frame is between 450 and 900
           }
 
           stroke(dark)
@@ -105,7 +149,7 @@
           rect(area.w,0,area.W/2,area.h)
           UIbuttons()
 
-          var cText = showtext()        //Get text form JSON
+          var cText = showtext(0)        //Get text form JSON
           if(cText) {                   //If text is gratheret
             /* Enclosed code */
             push()
@@ -116,13 +160,36 @@
             textSize(18)                            //Set new text size
             text(cText.Content, area.w+10, 55, 320) //Display text from JSON
             if (cText.Extra) {                      //If there is any text tagget "ekstra" display it at the bottom:
-              text(cText.Extra, area.w+10, area.h-100, 330, 100)
+              text(cText.Extra, area.w+10, area.h-120, 330, 100)
             }
             pop()
             /* Eo: Enclosed code */
           }
-
+          textSize(14)
+          fill(0)
+          rect(area.W-100-5, area.h-20-5, 100, 20)
+          fill(255)
+          text("Næste", area.W-100-5, area.h-20-2, 100, 20)
+          if (mouseX > area.W-100-5 && mouseY > area.h-20-2 && mouseX < area.W-5 && mouseY < area.h-2 && mouseIsPressed && mouseRel) {
+            mouseRel = false
+            var next = showtext(1)  //Get the next text element
+            frame = next.from
+          } else if (!mouseIsPressed) {
+            mouseRel = true
+          }
         }
+
+
+        var exercisesQ1 = []
+        var exercisesQ2 = []
+        var exercisesQ3 = []
+        var exercisesQ4 = []
+        var exercisesQ5 = []
+        var exercisesQ6 = []
+
+        var atQ = 1
+
+        var wait = 0
 
         function exerciseUI() {
           if (!betw(450,900)) {
@@ -130,17 +197,131 @@
           }
           background(bright)
 
+          if (exercisesQ1.clicked&&atQ==1) {
+            multiplechoice()
+            atQ=2
+            wait = millis()
+          } else if (atQ == 1 && wait<millis()) {
+            exercisesQ1 = multiplechoice(100, 100, q[1].question, q[1].choices, q[1].correct, 20, 7)
+          }
 
+          if (exercisesQ1.correct==true) {
+            fill(0,255,0)
+            text("Rigtig", 200, 200)
+          } else if (exercisesQ1.correct) {
+            fill(255,0,0)
+            text("'"+q[1].choices[exercisesQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
+          }
 
+          if (exercisesQ2.clicked&&atQ==2) {
+            multiplechoice()
+            atQ=3
+            wait = millis()
+          } else if (atQ == 2 && wait<millis()-1500) {
+            exercisesQ2 = multiplechoice(100, 100, q[2].question, q[2].choices, q[2].correct, 20, 7)
+          }
 
+          if (exercisesQ2.correct==true) {
+            fill(0,255,0)
+            text("Rigtig", 200, 200)
+          } else if (exercisesQ2.correct) {
+            fill(255,0,0)
+            text("'"+q[1].choices[exercisesQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
+          }
 
+          if (exercisesQ3.clicked&&atQ==3) {
+            multiplechoice()
+            atQ=4
+            wait = millis()
+          } else if (atQ == 3 && wait<millis()-1500) {
+            exercisesQ3 = multiplechoice(100, 100, q[3].question, q[3].choices, q[3].correct, 20, 7)
+          }
 
+          if (exercisesQ3.correct==true) {
+            fill(0,255,0)
+            text("Rigtig", 200, 200)
+          } else if (exercisesQ3.correct) {
+            fill(255,0,0)
+            text("'"+q[1].choices[exercisesQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
+          }
 
+          if (exercisesQ4.clicked&&atQ==4) {
+            multiplechoice()
+            atQ=5
+            wait = millis()
+          } else if (atQ == 4 && wait<millis()-1500) {
+            exercisesQ4 = multiplechoice(100, 100, q[4].question, q[4].choices, q[4].correct, 20, 7)
+          }
 
+          if (exercisesQ4.correct==true) {
+            fill(0,255,0)
+            text("Rigtig", 200, 200)
+          } else if (exercisesQ4.correct) {
+            fill(255,0,0)
+            text("'"+q[1].choices[exercisesQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
+          }
 
+          if (exercisesQ5.clicked&&atQ==5) {
+            multiplechoice()
+            atQ=6
+            wait = millis()
+          } else if (atQ == 5 && wait<millis()-1500) {
+            exercisesQ5 = multiplechoice(100, 100, q[5].question, q[5].choices, q[5].correct, 20, 7)
+          }
 
+          if (exercisesQ5.correct==true) {
+            fill(0,255,0)
+            text("Rigtig", 200, 200)
+          } else if (exercisesQ5.correct) {
+            fill(255,0,0)
+            text("'"+q[1].choices[exercisesQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
+          }
 
           UIbuttons()
+        }
+
+        function multiplechoice(x, y, q, a, ai, s, sp) {
+          if(!sp) {sp=5}                            //Default for sp if not set
+          if(!s) {s=10}                             //Default for s if not set
+          if(!x) {mpc=0;return true} else if(!a) {return false} //Set required querries
+          var arr = {"hover":0,"clicked":false,"correct":false}
+
+          for (var i = 1; i < a.length+1; i++) {
+            stroke(dark)
+            noFill()
+            rect(x,y+i*(s+sp),s,s)
+            noStroke()
+            fill(dark)
+            if (mpc > 0) {
+              fill(dark)
+              rect(x+2,y+mpc*(s+sp)+2,s-3,s-3)
+            } else if (mouseX >= x && mouseY >= y+i*(s+sp) && mouseX <= x+s && mouseY <= s+y+i*(s+sp)) {
+              arr.hover = i
+              arr.clicked = false
+              fill(255,255,0)
+              if (mouseIsPressed) {
+                if (ai==i) {
+                  ai = true
+                }
+                arr.clicked = true
+                arr.correct = ai
+                fill(dark)
+                mpc = i
+              }
+              rect(x+2,y+i*(s+sp)+2,s-3,s-3)
+            }
+            text(a[i-1], x+s+sp, y+i*(s+sp)+s/2+sp/2+2)
+            fill(dark)
+            text(q, x, y- 5, 400, 28)
+          }
+
+          if (mpc) {
+            return {"hover":mpc,"clicked":true,"correct":ai}
+          } else if (arr.hover>0) {
+            return arr
+          } else {
+            return false
+          }
         }
 
         function UIbuttons() {
@@ -230,45 +411,11 @@
 
         /* Self defined (comprimized) functions */
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
-        function showtext(){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i]}}}
+        function showtext(s){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i+s]}}}
         function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H=windowHeight;area.W=windowWidth;area.h=windowHeight-20;area.w=windowWidth-350;area.C.H=windowHeight/2;area.C.W=windowWidth/2;area.C.h=(windowHeight-20)/2;area.C.w=(windowWidth-350)/2}
-
-        function animation_control(state) {
-          if(state == "START") {                    //if pause is called:
-            anicontrol = setInterval(function() {   //Run async function:
-              active_button = "START"               //Set active_button as START
-              frame+=0.25                           //Increase frame by 0.25
-            },25)                                   //Every 25 ms
-          } else if (state == "PAUSE") {            //if pause is called:
-            active_button = "PAUSE"                 //Set active_button as PAUSE
-            var interval_id = setInterval("", 9999) //Get a reference to the last
-            for (var i = 1; i < interval_id; i++) { //Cycle throu all intervals
-              clearInterval(i)                      //to clearing all intervals
-            }
-            setTimeout(function(){hold=false},1000) //Allow user to only click every 1000 ms instead of every ms
-            anicontrol = 1
-          } else if (state == "NEXT") {             //if pause is called:
-            var lastData = showtext()               //Get JSON-data a reference-object to stop at change
-            anicontrol = setInterval(function() {   //Run async function:
-              active_button = "NEXT"                //Set active_button as
-              if (lastData == showtext()) {         //If JSON-data has not changed
-                frame += 0.25                       //Increase frame
-              } else {
-                animation_control("PAUSE")          //Else pause
-              }
-            },25)
-          } else if (state == "PREV" && frame >0) { //if pause is called:
-            var lastData = showtext()               //Get JSON-data a reference-object to stop at change
-            anicontrol = setInterval(function() {   //Run async function:
-              if (lastData == showtext() || frame < 0) {  //If JSON-data has not changed or frame is not the first
-                active_button = "PREV"              //Set active_button as
-                frame -= 0.25                       //Deincrease frame
-              } else {
-                animation_control("PAUSE")          //Else pause
-              }
-            },25)                                   //Every 25 ms
-          }
-        }
+        /* From StackOverflow */
+        //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+        const numberWithCommas = (x) => {return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
         /* EOS */
       </script>
     </div>
