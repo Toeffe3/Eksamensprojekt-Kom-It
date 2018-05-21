@@ -22,24 +22,33 @@ function keyPressed(e) {
 
   } else if(keyCode == 112) { //F1
 
+  } else if(keyCode == 116) { //F5
+    return                    //Bypass disableing
   } else if(keyCode == 123) { //F12
 
   } else if(keyCode == 36) {  //Home
     frame = 0
     atomSize = 1
   } else {
-    return false
+    return false              //Disables all keybindings, enabling custom kebindings
   }
 }
 
 function HID() {
-  if (mouseIsPressed && mouseButton === LEFT && mouseY < area.h) {  //When mouse is pressed down (right) do:
+  if (betw(400,450)) {
+    //Ingore mouse
+    textAlign(CENTER)
+    textSize(12)
+    text("Museknapperne fungerer normalt på dette slide.",area.C.w, area.H-45)
+    text("Brug istedet knapper til at forsætte fra dette slide.",area.C.w, area.H-25)
+  } else if (mouseIsPressed && mouseButton === LEFT && mouseY < area.h) {  //When mouse is pressed down (right) do:
     frame++                                 //Increase frame (continue "sliding")
     //console.log(frame)                    //For Debugging purposes only
   } else if (mouseIsPressed && mouseButton === RIGHT && mouseY < area.h && frame > 0.25) {  //When mouse is pressed down (left) do:
     frame--                                 //Increase frame (continue "sliding")
     //console.log(frame)                    //For Debugging purposes only
   }
+
   var startC = 0;
   var d = true;
   if(frame == 2 && d) {
@@ -76,6 +85,43 @@ function HID() {
     }
 
     setTimeout(function(){hold=false},1000)
+  }
+}
+
+function animation_control(state) {
+  if(state == "START") {                    //if pause is called:
+    anicontrol = setInterval(function() {   //Run async function:
+      active_button = "START"               //Set active_button as START
+      frame+=0.25                           //Increase frame by 0.25
+    },25)                                   //Every 25 ms
+  } else if (state == "PAUSE") {            //if pause is called:
+    active_button = "PAUSE"                 //Set active_button as PAUSE
+    var interval_id = setInterval("", 9999) //Get a reference to the last
+    for (var i = 1; i < interval_id; i++) { //Cycle throu all intervals
+      clearInterval(i)                      //to clearing all intervals
+    }
+    setTimeout(function(){hold=false},1000) //Allow user to only click every 1000 ms instead of every ms
+    anicontrol = 1
+  } else if (state == "NEXT") {             //if pause is called:
+    var lastData = showtext()               //Get JSON-data a reference-object to stop at change
+    anicontrol = setInterval(function() {   //Run async function:
+      active_button = "NEXT"                //Set active_button as
+      if (lastData == showtext()) {         //If JSON-data has not changed
+        frame += 0.25                       //Increase frame
+      } else {
+        animation_control("PAUSE")          //Else pause
+      }
+    },25)
+  } else if (state == "PREV" && frame >0) { //if pause is called:
+    var lastData = showtext()               //Get JSON-data a reference-object to stop at change
+    anicontrol = setInterval(function() {   //Run async function:
+      if (lastData == showtext() || frame < 0) {  //If JSON-data has not changed or frame is not the first
+        active_button = "PREV"              //Set active_button as
+        frame -= 0.25                       //Deincrease frame
+      } else {
+        animation_control("PAUSE")          //Else pause
+      }
+    },25)                                   //Every 25 ms
   }
 }
 
