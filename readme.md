@@ -27,6 +27,6 @@ Projekt information
 * Sprog: `JavaScript`+`HTML5`
 * Enviorment: `p5.js`
 * Tid brugt: `15 timer og 25 min`
-* Grade: `Ikke eksamineret`
+* Karakter: `Ikke eksamineret`
 
 ---
