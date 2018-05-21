@@ -12,7 +12,7 @@ Project info
 --
 * Language: `JavaScript`+`HTML5`
 * Enviorment: `p5.js`
-* Time elapsed: `13 hour and 2 min`
+* Time elapsed: `15 hour and 25 min`
 * Grade: `Not exanimated`
 
 --------
@@ -26,7 +26,7 @@ Projekt information
 --
 * Sprog: `JavaScript`+`HTML5`
 * Enviorment: `p5.js`
-* Tid brugt: `13 timer og 2 min`
+* Tid brugt: `15 timer og 25 min`
 * Grade: `Ikke eksamineret`
 
 ---
