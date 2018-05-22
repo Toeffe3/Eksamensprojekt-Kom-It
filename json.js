@@ -71,6 +71,7 @@ var q = [
         "Leptoner"
       ],
       "correct": 2
+      "correct": 3
     }, {
       "question": "hvor mange forskellige kvaker kan en protoner bestå af?",
       "choices": [
@@ -79,6 +80,7 @@ var q = [
         "9"
       ],
       "correct": 1
+      "correct": 2
     }, {
       "question": "hvor lang tid har vi fådet antimatter til at eksistere?",
       "choices": [
@@ -87,5 +89,6 @@ var q = [
         "Et nanosikund"
       ],
       "correct": 1
+      "correct": 2
     }
 ]
