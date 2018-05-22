@@ -47,13 +47,13 @@ var json = [
     "from": 350,
     "to": 400,
     "Header": "E=mc2 1",
-    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)"
+    "Content": "Hvad der sker her er at masse omdannes til energi; hvilket Einsteins relativitetsteori bekræfter, men hvordan gør den det?"
   }, {
     "from": 400,
     "to": 450,
     "Header": "Overskriften for side 4",
     "Header": "E=mc2 2",
-    "Content": "Tekst"
+    "Content": "Dette er Einsteins formel: E=mc2. Han sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, her i formlen lysets hastighed[c2]."
   }, {
     "from": 450,
     "to": 550,
@@ -70,7 +70,7 @@ var q = [
         "Kvarks",
         "Leptons"
       ],
-      "correct": 2
+      "correct": 3
     }, {
       "question": "Hvor mange forskellige slags Kvaks bestå nuklider(protoner og neutroner) af?",
       "choices": [
@@ -78,7 +78,7 @@ var q = [
         "3",
         "7"
       ],
-      "correct": 1
+      "correct": 2
     }, {
       "question": "Hvad er det længste tid vi har fået antimatter til at eksistere?",
       "choices": [
