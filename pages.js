@@ -50,7 +50,7 @@ function startpage() {
 }
 
 function atom() {
-  if (frame > 50 && frame < 75) { //If x is not defined or false do:
+  if (betw(50,75)) { //If x is not defined or false do:
     atomSize=(frame-50)*12        //Increase atom
   }
 
@@ -76,29 +76,66 @@ function atom() {
 }
 
 function quark() {
-  fill(bright)
-  ellipse(area.C.w,area.C.h+60,65)
-  ellipse(area.C.w-55,area.C.h-45,65)
-  ellipse(area.C.w+55,area.C.h-45,65)
 
-  textAlign(CENTER)
+  var eX = cos(frameCount*0.04)*(175) //Create or re-define the electron's x position (Using cos to make it orbit)
+  var eY = sin(frameCount*0.04)*(175) //Create or re-define the electron's y position (Using sin to make it orbit)
+
+  background(bright)
+  stroke(dark)
+  fill(bright)
+  ellipse(area.C.w,200,350)
+  ellipse(area.C.w,area.h-200,350)
   fill(dark)
+  ellipse(area.C.w,200,50+160)
+  ellipse(area.C.w+eX,200+eY,20+160/10)
+  ellipse(area.C.w,area.h-200,50+160)
+  ellipse(area.C.w+eX,area.h-200+eY,20+160/10)
+
+
+  fill(bright)
   noStroke()
   textSize(28)
   textStyle(BOLD)
-  text("↓",area.C.w,area.C.h+60+1)
-  text("↑",area.C.w-55,area.C.h-45)
-  text("↑",area.C.w+55,area.C.h-45)
-  textSize(10)
-  text("down",area.C.w,area.C.h+60+16)
-  text("up",area.C.w-55,area.C.h-45+14)
-  text("up",area.C.w+55,area.C.h-45+14)
-  stroke(dark)
-  textStyle(NORMAL)
-
-  if (frame >= 175) {
+  textAlign(CENTER)
+  ellipse(area.C.w,200+50,65)
+  ellipse(area.C.w-45,200-25,65)
+  ellipse(area.C.w+45,200-25,65)
+  ellipse(area.C.w,area.h-200+50,65)
+  ellipse(area.C.w-45,area.h-200-25,65)
+  ellipse(area.C.w+45,area.h-200-25,65)
+  fill(dark)
+  if (betw(75,100)) {
+    text("↓",area.C.w,200+50+1)
+    text("↑",area.C.w-45,200-25)
+    text("↑",area.C.w+45,200-25)
+    text("↑",area.C.w,area.h-200+50+1)
+    text("↓",area.C.w-45,area.h-200-25)
+    text("↓",area.C.w+45,area.h-200-25)
+    textSize(10)
+    text("down",area.C.w,200+50+16)
+    text("up",area.C.w-45,200-25+14)
+    text("up",area.C.w+45,200-25+14)
+    text("up",area.C.w,area.h-200+50+16)
+    text("down",area.C.w-45,area.h-200-25+14)
+    text("down",area.C.w+45,area.h-200-25+14)
+  } else {
+    text("↓",area.C.w,200+50+1)
+    text("↑",area.C.w-45,200-25)
+    text("↑",area.C.w+45,200-25)
+    text("↑",area.C.w,area.h-200+50+1)
+    text("↓",area.C.w-45,area.h-200-25)
+    text("↓",area.C.w+45,area.h-200-25)
+    textSize(10)
+    text("anti-down",area.C.w,200+50+16)
+    text("anti-up",area.C.w-45,200-25+14)
+    text("anti-up",area.C.w+45,200-25+14)
+    text("anti-up",area.C.w,area.h-200+50+16)
+    text("anti-down",area.C.w-45,area.h-200-25+14)
+    text("anti-down",area.C.w+45,area.h-200-25+14)
 
   }
+  stroke(dark)
+  textStyle(NORMAL)
 }
 
 function forcet() {

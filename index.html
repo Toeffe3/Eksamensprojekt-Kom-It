@@ -82,6 +82,13 @@
           HID()                         //Call HID (Human Interface Devises, aka key strokes and mouse)
           UI()                          //Call and update UI (User Interface and graphics)
           exerciseUI()                  //Call exerciseUI (new interface for the exercises)
+          if (betw(75,100)) {
+            table(area.w+5, 200, 85, 18, [
+              ["Familie1", "Familie2", "Familie3", "L.e."],
+              ["UP", "TOP", "CHARM", " +2/3"],
+              ["DOWN", "BOTTOM", "STRANGE", " -1/3"]
+            ])
+          }
         }
 
         /* Checks if anything new shall be exectued in the current frame */
@@ -91,7 +98,6 @@
           } else if (betw(50, 75)) {
             atom()                      //Call atom
           } else if (betw(75, 200)) {
-            atom()                      //Call atom
             quark()                     //And call quark
           } else if (betw(200, 300)) {
             forcet()                    //Call forcet (Force of gravity)
@@ -285,6 +291,21 @@
         }
 
         /* Self defined functions */
+        function table(x, y, w, h, data) {
+          for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j < data[i].length; j++) {
+              noFill()
+              strokeWeight(2)
+              stroke(dark)
+              rect(x+w*j, y+h*i, w, h)
+              noStroke()
+              fill(dark)
+              text(data[i][j],x+w/2+w*j, 5+y+h/2+h*i)
+            }
+          }
+        }
+
+
         function slider(i, slx, sly, slw, slt, dts) {
           for (var e = 0; e < dotId.length; e++) {
             if (dotId[e] == i) {
