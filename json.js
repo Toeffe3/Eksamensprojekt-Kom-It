@@ -32,17 +32,17 @@ var json = [
     "from": 150,
     "to":200,
     "Header": "Antimatter Spin",
-    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)."
+    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up( ̅↑), anti Down( ̅↓), anti Top( ̅↥), anti Bottom( ̅↧), anti Charm( ̅—) og anti Stange( ̅〜)."
   }, {
     "from": 200,
     "to": 300,
     "Header": "Egenskaber 1",
-    "Content": "Tekst"
+    "Content": "Man afprøver mange af antimatters egenskaber i store maskiner, for at se om der er forskel på antimatter og matter. Man har i lang tid diskuteret hvorvidt tyngdekraften ville have en anden indflydelse på antimatter, men det er svært at lave nok antimatter til at afprøve hvordan antimatter opfører sig, da antimatteret, man kan lave, har kort levetid."
   }, {
     "from": 300,
     "to": 350,
     "Header": "Egenskaber 2",
-    "Content": "Tekst"
+    "Content": "En anden egenskab antimatter har, er at når det kolliderer med matter og skaber store mængder energi ved at udligne hinanden. Men det modsatte kan også ske man kan også skabe matter og antimatter ud af regn energi."
   }, {
     "from": 350,
     "to": 400,
