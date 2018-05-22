@@ -63,29 +63,45 @@ var json = [
 ]
 
 var q = [
-    {
+    {}, {
       "question": "Hvad består protoner af?",
       "choices": [
         "Elektoner",
-        "Kvarker",
-        "Leptoner"
+        "Kvarks",
+        "Leptons"
       ],
       "correct": 2
     }, {
-      "question": "hvor mange forskellige kvaker kan en protoner bestå af?",
+      "question": "Hvor mange forskellige slags Kvaks bestå nuklider(protoner og neutroner) af?",
       "choices": [
         "6",
         "3",
-        "9"
+        "7"
       ],
       "correct": 1
     }, {
-      "question": "hvor lang tid har vi fådet antimatter til at eksistere?",
+      "question": "Hvad er det længste tid vi har fået antimatter til at eksistere?",
       "choices": [
-        "Under et nanosikund",
-        "Over et nanosikund",
-        "Et nanosikund"
+        "Under et nanosekund",
+        "Over et nanosekund",
+        "Et nanosekund"
       ],
       "correct": 1
+    }, {
+      "question": "?",
+      "choices": [
+        "11",
+        "12",
+        "13"
+      ],
+      "correct": 3
+    }, {
+      "question": "?",
+      "choices": [
+        "21",
+        "22",
+        "23"
+      ],
+      "correct": 2
     }
 ]

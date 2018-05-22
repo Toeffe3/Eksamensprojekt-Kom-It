@@ -143,7 +143,6 @@
           }
         }
 
-
         var exQ1 = []
         var exQ2 = []
         var exQ3 = []
@@ -159,62 +158,76 @@
           if (!betw(450,900)) {
             return
           }
+          textAlign(LEFT)
           background(bright)
 
           if (exQ5.clicked && atQ == 5) {
             multiplechoice()
-            atQ++
+            atQ=6
             wait = millis()
-          } else if (exQ4.clicked && atQ == 4) {
+          }
+          if (exQ4.clicked && atQ == 4) {
             multiplechoice()
             atQ=5
             wait = millis()
-          } else if (exQ3.clicked && atQ == 3) {
+          }
+          if (exQ3.clicked && atQ == 3) {
             multiplechoice()
             atQ=4
             wait = millis()
-          } else if (exQ2.clicked && atQ == 2) {
+          }
+          if (exQ2.clicked && atQ == 2) {
             multiplechoice()
             atQ=3
             wait = millis()
-          } else if (exQ1.clicked && atQ == 1) {
+          }
+          if (exQ1.clicked && atQ == 1) {
             multiplechoice()
             atQ=2
             wait = millis()
           }
 
-           if (atQ == 5 && wait<millis()-1500) {
-            exQ5 = multiplechoice(100, 100, q[5].question, q[5].choices, q[5].correct, 20, 7)
-          } else if (atQ == 4 && wait<millis()-1500) {
-            exQ4 = multiplechoice(100, 100, q[4].question, q[4].choices, q[4].correct, 20, 7)
-          } else if (atQ == 3 && wait<millis()-1500) {
-            exQ3 = multiplechoice(100, 100, q[3].question, q[3].choices, q[3].correct, 20, 7)
-          } else if (atQ == 2 && wait<millis()-1500) {
-            exQ2 = multiplechoice(100, 100, q[2].question, q[2].choices, q[2].correct, 20, 7)
-          } else if (atQ == 1 && wait<millis()) {
-            exQ1 = multiplechoice(100, 100, q[1].question, q[1].choices, q[1].correct, 20, 7)
+
+          if (atQ == 5 && wait<millis()-1500) {
+            exQ5 = multiplechoice(100, 100, q[5].question, q[5].choices, 20, 7)
+          }
+          if (atQ == 4 && wait<millis()-1500) {
+            exQ4 = multiplechoice(100, 100, q[4].question, q[4].choices, 20, 7)
+          }
+          if (atQ == 3 && wait<millis()-1500) {
+            exQ3 = multiplechoice(100, 100, q[3].question, q[3].choices, 20, 7)
+          }
+          if (atQ == 2 && wait<millis()-1500) {
+            exQ2 = multiplechoice(100, 100, q[2].question, q[2].choices, 20, 7)
+          }
+          if (atQ == 1 && wait<millis()) {
+            exQ1 = multiplechoice(100, 100, q[1].question, q[1].choices, 20, 7)
           }
 
-          if (exQ1.correct==true&&atQ==2) {
-            fill(0,255,0);text("Rigtig", 200, 200)
-          } else if (exQ1.correct&&atQ==2) {
-            fill(255,0,0);text("'"+q[1].choices[exQ1.correct-1]+" 'var det rigtige svar.", 200, 200)
-          } else if (exQ2.correct==true&&atQ==3) {
-            fill(0,255,0);text("Rigtig", 200, 200)
-          } else if (exQ2.correct&&atQ==3) {
-            fill(255,0,0);text("'"+q[2].choices[exQ2.correct-1]+" 'var det rigtige svar.", 200, 200)
-          } else if (exQ3.correct==true&&atQ==4) {
-            fill(0,255,0);text("Rigtig", 200, 200)
-          } else if (exQ3.correct&&atQ==4) {
-            fill(255,0,0);text("'"+q[3].choices[exQ3.correct-1]+" 'var det rigtige svar.", 200, 200)
-          } else if (exQ4.correct==true&&atQ==5) {
-            fill(0,255,0);text("Rigtig", 200, 200)
-          } else if (exQ4.correct&&atQ==5) {
-            fill(255,0,0);text("'"+q[4].choices[exQ4.correct-1]+" 'var det rigtige svar.", 200, 200)
-          } else if (exQ5.correct==true&&atQ==6) {
-            fill(0,255,0);text("Rigtig", 200, 200)
-          } else if (exQ5.correct&&atQ==6) {
-            fill(255,0,0);text("'"+q[5].choices[exQ5.correct-1]+" 'var det rigtige svar.", 200, 200)
+          if (q[1].correct==exQ1.hover) {
+            fill(0,255,0);text("Rigtig", 100, 300)
+          } else if (exQ1.clicked){
+            fill(255,0,0);text("'"+q[1].choices[q[1].correct-1]+" 'var det rigtige svar.", 100, 300)
+          }
+          if (q[2].correct==exQ2.hover) {
+            fill(0,255,0);text("Rigtig", 100, 330)
+          } else if (exQ2.clicked){
+            fill(255,0,0);text("'"+q[2].choices[q[2].correct-1]+" 'var det rigtige svar.", 100, 330)
+          }
+          if (q[3].correct==exQ3.hover) {
+            fill(0,255,0);text("Rigtig", 100, 360)
+          } else if (exQ3.clicked){
+            fill(255,0,0);text("'"+q[3].choices[q[3].correct-1]+" 'var det rigtige svar.", 100, 360)
+          }
+          if (q[4].correct==exQ4.hover) {
+            fill(0,255,0);text("Rigtig", 100, 390)
+          } else if (exQ4.clicked){
+            fill(255,0,0);text("'"+q[4].choices[q[4].correct-1]+" 'var det rigtige svar.", 100, 390)
+          }
+          if (q[5].correct==exQ5.hover) {
+            fill(0,255,0);text("Rigtig", 100, 420)
+          } else if (exQ5.clicked) {
+            fill(255,0,0);text("'"+q[5].choices[q[5].correct-1]+" 'var det rigtige svar.", 100, 420)
           }
 
           UIbuttons()
@@ -304,11 +317,11 @@
           }
         }
 
-        function multiplechoice(x, y, q, a, ai, s, sp) {
+        function multiplechoice(x, y, q, a, s, sp) {
           if(!sp) {sp=5}                            //Default for sp if not set
           if(!s) {s=10}                             //Default for s if not set
           if(!x) {mpc=0;return true} else if(!a) {return false} //Set required querries
-          var arr = {"hover":0,"clicked":false,"correct":false}
+          var arr = {"hover":0,"clicked":false}
 
           for (var i = 1; i < a.length+1; i++) {
             stroke(dark)
@@ -324,11 +337,7 @@
               arr.clicked = false
               fill(150,150,0)
               if (mouseIsPressed) {
-                if (ai==i) {
-                  ai = true
-                }
                 arr.clicked = true
-                arr.correct = ai
                 fill(dark)
                 mpc = i
               }
@@ -340,8 +349,9 @@
           }
 
           if (mpc) {
-            return {"hover":mpc,"clicked":true,"correct":ai}
-          } else if (arr.hover>0) {
+            arr.hover=mpc
+          }
+          if (arr.hover>0) {
             return arr
           } else {
             return false
@@ -350,7 +360,7 @@
 
         /* Self defined (comprimized) functions */
         function betw(low,high){if(frame>=low&&frame<high){return true}return false}
-        function showtext(s){for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i+s]}}}
+        function showtext(s){if(s){}else{s=0}for(var i=0;i<json.length;i++){if(json[i].from<=frame&&json[i].to>frame){return json[i+s]}}}
         function windowResized(){resizeCanvas(windowWidth,windowHeight);area.H=windowHeight;area.W=windowWidth;area.h=windowHeight-20;area.w=windowWidth-350;area.C.H=windowHeight/2;area.C.W=windowWidth/2;area.C.h=(windowHeight-20)/2;area.C.w=(windowWidth-350)/2}
         /* From StackOverflow */
         //https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
