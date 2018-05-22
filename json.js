@@ -70,7 +70,7 @@ var q = [
         "Kvarks",
         "Leptons"
       ],
-      "correct": 3
+      "correct": 2
     }, {
       "question": "Hvor mange forskellige slags Kvaks bestå nuklider(protoner og neutroner) af?",
       "choices": [
@@ -78,7 +78,7 @@ var q = [
         "3",
         "7"
       ],
-      "correct": 2
+      "correct": 1
     }, {
       "question": "Hvad er det længste tid vi har fået antimatter til at eksistere?",
       "choices": [
@@ -88,7 +88,7 @@ var q = [
       ],
       "correct": 1
     }, {
-      "question": "?",
+      "question": "13=",
       "choices": [
         "11",
         "12",
@@ -96,7 +96,7 @@ var q = [
       ],
       "correct": 3
     }, {
-      "question": "?",
+      "question": "22=",
       "choices": [
         "21",
         "22",

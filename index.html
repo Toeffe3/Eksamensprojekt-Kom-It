@@ -204,27 +204,27 @@
             exQ1 = multiplechoice(100, 100, q[1].question, q[1].choices, 20, 7)
           }
 
-          if (q[1].correct==exQ1.hover) {
+          if (q[1].correct==exQ1.hover && exQ1.clicked) {
             fill(0,255,0);text("Rigtig", 100, 300)
           } else if (exQ1.clicked){
             fill(255,0,0);text("'"+q[1].choices[q[1].correct-1]+" 'var det rigtige svar.", 100, 300)
           }
-          if (q[2].correct==exQ2.hover) {
+          if (q[2].correct==exQ2.hover && exQ1.clicked) {
             fill(0,255,0);text("Rigtig", 100, 330)
           } else if (exQ2.clicked){
             fill(255,0,0);text("'"+q[2].choices[q[2].correct-1]+" 'var det rigtige svar.", 100, 330)
           }
-          if (q[3].correct==exQ3.hover) {
+          if (q[3].correct==exQ3.hover && exQ1.clicked) {
             fill(0,255,0);text("Rigtig", 100, 360)
           } else if (exQ3.clicked){
             fill(255,0,0);text("'"+q[3].choices[q[3].correct-1]+" 'var det rigtige svar.", 100, 360)
           }
-          if (q[4].correct==exQ4.hover) {
+          if (q[4].correct==exQ4.hover && exQ1.clicked) {
             fill(0,255,0);text("Rigtig", 100, 390)
           } else if (exQ4.clicked){
             fill(255,0,0);text("'"+q[4].choices[q[4].correct-1]+" 'var det rigtige svar.", 100, 390)
           }
-          if (q[5].correct==exQ5.hover) {
+          if (q[5].correct==exQ5.hover && exQ1.clicked) {
             fill(0,255,0);text("Rigtig", 100, 420)
           } else if (exQ5.clicked) {
             fill(255,0,0);text("'"+q[5].choices[q[5].correct-1]+" 'var det rigtige svar.", 100, 420)
