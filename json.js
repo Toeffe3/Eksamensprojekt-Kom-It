@@ -47,7 +47,7 @@ var json = [
     "from": 350,
     "to": 400,
     "Header": "E=mc2 1",
-    "Content": "Antimatter elementar patikler har også spins som henholdsvis hedder ; anti Up(↑), anti Down(↓), anti Top(↥), anti Bottom(↧), anti Charm(—) og anti Stange(〜)"
+    "Content": "Dette er Einsteins formel: E=mc2. Han sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, her i formlen lysets hastighed[c2]."
   }, {
     "from": 400,
     "to": 450,
