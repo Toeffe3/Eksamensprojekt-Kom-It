@@ -47,13 +47,13 @@ var json = [
     "from": 350,
     "to": 400,
     "Header": "E=mc2 1",
-    "Content": "Dette er Einsteins formel: E=mc2. Han sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, her i formlen lysets hastighed[c2]."
+    "Content": "Hvad der sker her er at masse omdannes til energi; hvilket Einsteins relativitetsteori bekræfter, men hvordan gør den det?"
   }, {
     "from": 400,
     "to": 450,
     "Header": "Overskriften for side 4",
     "Header": "E=mc2 2",
-    "Content": "Tekst"
+    "Content": "Dette er Einsteins formel: E=mc2. Han sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, her i formlen lysets hastighed[c2]."
   }, {
     "from": 450,
     "to": 550,
