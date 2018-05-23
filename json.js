@@ -14,7 +14,7 @@ var json = [
     "from": 1,
     "to": 50,
     "Header": "Kort - Antistof?",
-    "Content": "Antistof (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antistof; protoner, elektroner og neutroner - alt det vi kan se.",
+    "Content": "Antimatter (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antistof; protoner, elektroner og neutroner - alt det vi kan se.",
     "Extra": "Matter: Partikler.\nAntistof: Partikler med omvendt ladning."
   }, {
     "from": 50,
@@ -26,13 +26,13 @@ var json = [
     "from": 75,
     "to": 150,
     "Header": "Elementar partikler",
-    "Content": "Protoner og neutroner er bygget af elementarpartikler kaldet kvarks, elektronen er i sig selv en fundamental partikel; som hører under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som er opdelt i par af modsætninger.\n\n\n\nKvarks kan kun gå i par, dog laves én trippel-forbindelse, der bestemmer om det er en proton eller en neutron. En neutron består af 1 x Up(↑) og 2 x Down(↓). En proton består af 2 x Up(↑) og 1 x Down(↓).",
+    "Content": "Protoner og neutroner er bygget af elementarpartikler kaldet kvarks, elektronen er i sig selv en fundamental partikel; som hører under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som er opdelt i par af modsætninger.\n\n\n\nKvarks kan kun gå i par, dog laves én trippel-forbindelse, der bestemmer om det er en proton eller en neutron.\nEn neutron består af 1 x Up(↑) og 2 x Down(↓).\nEn proton består af 2 x Up(↑) og 1 x Down(↓).",
     "Extra": "Elementarpartikler: De mindste partikler.\n'L.e': Elementarpartikel Ladning."
   }, {
     "from": 150,
     "to":200,
     "Header": "Antistof Spin",
-    "Content": "Hvis man ligger ladningen for kvarks sammen kan man se at en proton har en ladning på 2/3. Men hvad er de 2/3, volt? Nej, de er elementarladning som er lig\n-1,6*10^(-19) Coulomb\n\nEn elektron har således en ladning på -1.",
+    "Content": "Hvis man ligger ladningen for kvarks sammen kan man se at en proton har en ladning på 2/3. Men hvad er de 2/3, volt? Nej, de er elementarladning som er lig -1,6*10^(-19) Coulomb\n\nEn elektron har således en ladning på -1.",
     "Extra": "Coulomb: enheden for ladning"
   }, {
     "from": 200,
@@ -43,7 +43,7 @@ var json = [
     "from": 300,
     "to": 350,
     "Header": "Egenskaber",
-    "Content": "Grunden til at antistof ikke lever længe er at hvis det kolliderer med matter, udlignes begge dele og kan skabe store mængder energi. Men det modsatte kan også ske; man kan også skabe matter og antistof ud af ren energi. I Switz ligger der et stort forsknings-område hvor man kan acclerer partikler op til 99,9999999999998% af lysets hastighed, her støder man dem så sammen og det skaber antistof."
+    "Content": "Grunden til at antistof ikke lever længe er at hvis det kolliderer med matter, udlignes begge dele og kan skabe store mængder energi. Men det modsatte kan også ske; man kan også skabe matter og antistof ud af ren energi. I Schweiz ligger der et stort forsknings-område (kaldet CERN) hvor man kan acclerer partikler op til 99,9999999999998% af lysets hastighed, her støder man dem så sammen og det skaber antistof."
   }, {
     "from": 350,
     "to": 400,
@@ -89,19 +89,19 @@ var q = [
       ],
       "correct": 1
     }, {
-      "question": "13=",
+      "question": "Hvad er ladningen på en proton",
       "choices": [
-        "11",
-        "12",
-        "13"
+        "1",
+        "-1/2",
+        "2/3"
       ],
       "correct": 3
     }, {
-      "question": "22=",
+      "question": "Hvad er ladningen på en elektron",
       "choices": [
-        "21",
-        "22",
-        "23"
+        "-1/2",
+        "-1",
+        "-2"
       ],
       "correct": 2
     }
