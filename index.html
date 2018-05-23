@@ -137,7 +137,7 @@
             textSize(18)                            //Set new text size
             text(cText.Content, area.w+10, 55, 320) //Display text from JSON
             if (cText.Extra) {                      //If there is any text tagget "ekstra" display it at the bottom:
-              text(cText.Extra, area.w+10, area.h-120, 330, 100)
+              text(cText.Extra, area.w+10, area.h-120, 330, 120)
             }
             pop()
             /* Eo: Enclosed code */
@@ -373,7 +373,7 @@
             }
             text(a[i-1], x+s+sp, y+i*(s+sp)+s/2+sp/2+2)
             fill(dark)
-            text(q, x, y- 5, 400, 28)
+            text(q, x, y- 5, 400)
           }
 
           if (mpc) {

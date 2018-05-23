@@ -8,13 +8,13 @@ var json = [
     "from": 0,
     "to": 1,
     "Header": "Velkommen!",
-    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antistof/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.\n\nTip: \nBrug pile- eller mellemrumstasterne",
+    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antimatter/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.\n\nTip: \nBrug pile- eller mellemrumstasterne.\n\nTak til realskolens 8. klasse der har testet sitet. \nKildekode ligger på GitHub: https://github.com/Toeffe3/\nEksamensprojekt-Kom-It",
     "Extra": "Dette produkt (skriftlig formidling undtaget) er lavet af Victor Jacobsen til Emil Mathiesen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
   }, {
     "from": 1,
     "to": 50,
     "Header": "Kort - Antistof?",
-    "Content": "Antimatter (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antistof; protoner, elektroner og neutroner - alt det vi kan se.",
+    "Content": "Antistof (fra engelsk antimatter) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antistof; protoner, elektroner og neutroner - alt det vi kan se.",
     "Extra": "Matter: Partikler.\nAntistof: Partikler med omvendt ladning."
   }, {
     "from": 50,
@@ -26,7 +26,7 @@ var json = [
     "from": 75,
     "to": 150,
     "Header": "Elementar partikler",
-    "Content": "Protoner og neutroner er bygget af elementarpartikler kaldet kvarks, elektronen er i sig selv en fundamental partikel; som hører under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som er opdelt i par af modsætninger.\n\n\n\nKvarks kan kun gå i par, dog laves én trippel-forbindelse, der bestemmer om det er en proton eller en neutron.\nEn neutron består af 1 x Up(↑) og 2 x Down(↓).\nEn proton består af 2 x Up(↑) og 1 x Down(↓).",
+    "Content": "Protoner og neutroner er bygget af elementarpartikler kaldet kvarks, elektronen er i sig selv en elemtarpartikel; som hører under gruppen leptons. Kvarks kan være i forskellige stadier (kaldet spids) som er opdelt i par af modsætninger.\n\n\n\nKvarks kan kun gå i par, dog laves én trippel-forbindelse, der bestemmer om det er en proton eller en neutron.\nEn neutron består af 1 x Up(↑) og 2 x Down(↓).\nEn proton består af 2 x Up(↑) og 1 x Down(↓).",
     "Extra": "Elementarpartikler: De mindste partikler.\n'L.e': Elementarpartikel Ladning."
   }, {
     "from": 150,
@@ -73,7 +73,7 @@ var q = [
       ],
       "correct": 2
     }, {
-      "question": "Hvor mange forskellige slags Kvaks bestå nuklider(protoner og neutroner) af?",
+      "question": "Hvor mange forskellige slags Kvaks findes der?",
       "choices": [
         "6",
         "3",
