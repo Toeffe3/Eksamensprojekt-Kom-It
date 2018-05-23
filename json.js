@@ -8,20 +8,20 @@ var json = [
     "from": 0,
     "to": 1,
     "Header": "Velkommen!",
-    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antistof/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.",
-    "Extra": "Dette er et produkt (skriftlig formidling undtaget) lavet af Victor Jacobsen til Emil Mathiesen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
+    "Content": "Dette er en interaktiv hjemmeside, der vil lære dig hvad Antistof/Antistof er. \n\nBrug:\nHold museknapperne nede for at bevæge dig frem eller tilbage i præsentationen. Du kan også bruge knapperne i bunden; 'Start', 'Pause', 'Forrige' og 'Næste'.\n\nTip: \nBrug pile- eller mellemrumstasterne",
+    "Extra": "Dette produkt (skriftlig formidling undtaget) er lavet af Victor Jacobsen til Emil Mathiesen, Anders Dænker og Victor Jacobsen's Kommikation/It-eksamen."
   }, {
     "from": 1,
     "to": 50,
     "Header": "Kort - Antistof?",
     "Content": "Antistof (på dansk antistof) er en proton, elektron sågar et helt atom med omvendt ladning. Det ser ikke anderledes ud, bevæger sig ikke anderledes og hele universet kunne være lavet af antistof uden du ville kunne se en forskel.\n\nMatter er således det modsatte af antistof; protoner, elektroner og neutroner - alt det vi kan se.",
-    "Extra": "Matter: Partikler.\nAnti-matter: Partikler med omvendt ladning."
+    "Extra": "Matter: Partikler.\nAntistof: Partikler med omvendt ladning."
   }, {
     "from": 50,
     "to": 75,
     "Header": "Atomet",
-    "Content": "Atomer er lavet af matter: protoner, elektroner og neutroner. Protoner er positivt ladet nuklider i atomet, protenen bestemmer massen af atomet.\nI atomer hvor kernen er størrer, holder de ladningsfrie neutronerne atomets protoner sammen for at de ikke frastøder hinanden.\nElektroner er ikke en nuklid, men en elemtarpartikel, de holder atomet stabilt og sørger for at atomer kan reagere med hinanden.",
-    "Extra": "Nuklid: Kerne.\nNuklider: Kernedele."
+    "Content": "Atomer er lavet af matter: protoner, elektroner og neutroner. \n\nProtoner er positivt ladet nuklid,\nNeutronen er neutralt ladet nuklid,\nElektronen er negativt ladet.\n\nI atomer hvor kernen er størrer, holder neutronerne atomets protoner sammen for at de ikke frastøder hinanden.\nElektronen er ikke en nuklid, men en elemtarpartikel, de holder atomet stabilt og sørger for at atomer kan reagere med hinanden.",
+    "Extra": "Nuklid: Kerne/kernedel."
   }, {
     "from": 75,
     "to": 150,
@@ -32,7 +32,8 @@ var json = [
     "from": 150,
     "to":200,
     "Header": "Antistof Spin",
-    "Content": "Antistof elementar patikler har også spins som henholdsvis hedder ; anti Up( ̅↑), anti Down( ̅↓), anti Top( ̅↥), anti Bottom( ̅↧), anti Charm( ̅—) og anti Stange( ̅〜)."
+    "Content": "Hvis man ligger ladningen for kvarks sammen kan man se at en proton har en ladning på 2/3. Men hvad er de 2/3, volt? Nej, de er elementarladning som er lig\n-1,6*10^(-19) Coulomb\n\nEn elektron har således en ladning på -1.",
+    "Extra": "Coulomb: enheden for ladning"
   }, {
     "from": 200,
     "to": 300,
@@ -53,7 +54,7 @@ var json = [
     "to": 450,
     "Header": "Overskriften for side 4",
     "Header": "E=mc2 2",
-    "Content": "Dette er Einsteins formel: E=mc2. Han sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, her i formlen lysets hastighed[c2]."
+    "Content": "Dette er relativitetsteori: E = mc2.\nHan sagde at energien[E] af en partikel er bestemt af hvor tung det er (masse[m]), og hastigheden, Einstein brugte her lysets hastighed[c2]."
   }, {
     "from": 450,
     "to": 550,

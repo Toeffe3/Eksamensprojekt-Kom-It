@@ -89,6 +89,13 @@
               ["DOWN", "BOTTOM", "STRANGE", " -1/3"]
             ])
           }
+          if (betw(100,150)) {
+            table(area.w+5, 200, 85, 18, [
+              ["Familie1", "Familie2", "Familie3", "L.e."],
+              ["A-UP", "A-TOP", "A-CHARM", " -2/3"],
+              ["A-DOWN", "A-BOTTOM", "A-STRANGE", " 1/3"]
+            ])
+          }
         }
 
         /* Checks if anything new shall be exectued in the current frame */
@@ -372,10 +379,10 @@
           if (mpc) {
             arr.hover=mpc
           }
-          if (arr.hover>0) {
+          if (arr.clicked) {
             return arr
           } else {
-            return false
+            return arr.hover
           }
         }
 
