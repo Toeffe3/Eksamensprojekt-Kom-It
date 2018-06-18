@@ -13,7 +13,7 @@ Project info
 * Language: `JavaScript`+`HTML5`
 * Enviorment: `p5.js`
 * Time elapsed: `15 hour and 25 min`
-* Grade: `Not exanimated`
+* Grade: `12 on the 7-step scale`
 
 --------
 Hej Verden,
@@ -27,6 +27,6 @@ Projekt information
 * Sprog: `JavaScript`+`HTML5`
 * Enviorment: `p5.js`
 * Tid brugt: `15 timer og 25 min`
-* Karakter: `Ikke eksamineret`
+* Karakter: `12 på 7-trins-skalaen`
 
 ---
